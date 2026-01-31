@@ -3,264 +3,200 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alif Octrio | Portfolio</title>
+    <title>Alif Octrio | Strategic AI Ops & PM</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
     <style>
         body { font-family: 'Inter', sans-serif; background-color: #000; color: #fff; overflow-x: hidden; }
         .font-heading { font-family: 'Space Grotesk', sans-serif; }
-        
-        /* Glass Card Base */
-        .glass-card { 
-            background: #080808; 
-            border: 1px solid #1a1a1a; 
-            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-            cursor: pointer;
-            position: relative;
-            overflow: hidden;
-        }
-
-        /* Animation when Active */
-        .glass-card.active {
-            border-color: #2563eb;
-            background: #0a0a0a;
-            box-shadow: 0 0 30px rgba(37, 99, 235, 0.1);
-        }
-
-        .skill-badge { 
-            background: rgba(37, 99, 235, 0.1); 
-            border: 1px solid rgba(37, 99, 235, 0.2); 
-            color: #60a5fa; 
-            font-size: 10px; padding: 2px 8px; border-radius: 4px; text-transform: uppercase; font-weight: bold; 
-        }
-
-        /* Content Expand Animation */
-        .content-expand {
-            max-height: 0;
-            opacity: 0;
-            transform: translateY(-10px);
-            transition: max-height 0.6s cubic-bezier(0.4, 0, 0.2, 1), 
-                        opacity 0.4s ease, 
-                        transform 0.4s ease;
-        }
-
-        .active .content-expand {
-            max-height: 1000px; /* Besar secukupnya */
-            opacity: 1;
-            transform: translateY(0);
-            padding-top: 24px;
-            padding-bottom: 10px;
-        }
-
-        /* Icon Rotation */
-        .icon-rotate {
-            transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-        }
-        .active .icon-rotate {
-            transform: rotate(180deg);
-            color: #2563eb;
-        }
-
+        .glass-card { background: #080808; border: 1px solid #1a1a1a; transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1); cursor: pointer; }
+        .glass-card:hover { border-color: #2563eb; background: #0a0a0a; }
+        .active { border-color: #2563eb !important; background: #0a0a0a !important; box-shadow: 0 0 30px rgba(37, 99, 235, 0.1); }
+        .skill-badge { background: rgba(37, 99, 235, 0.1); border: 1px solid rgba(37, 99, 235, 0.2); color: #60a5fa; font-size: 10px; padding: 2px 8px; border-radius: 4px; text-transform: uppercase; font-weight: bold; }
+        .content-expand { max-height: 0; opacity: 0; transform: translateY(-10px); transition: max-height 0.6s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s ease, transform 0.4s ease; }
+        .active .content-expand { max-height: 1200px; opacity: 1; transform: translateY(0); padding-top: 24px; padding-bottom: 10px; }
+        .icon-rotate { transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55); }
+        .active .icon-rotate { transform: rotate(180deg); color: #2563eb; }
         .text-glow { text-shadow: 0 0 20px rgba(37, 99, 235, 0.3); }
     </style>
 </head>
-<body class="selection:bg-blue-600 selection:text-white">
+<body class="selection:bg-blue-600 selection:text-white italic">
 
-    <nav class="fixed w-full z-[100] bg-black/90 backdrop-blur-md border-b border-white/5">
-        <div class="max-w-6xl mx-auto px-6 h-20 flex justify-between items-center">
-            <div class="text-xl font-black tracking-tighter uppercase italic">ALIF <span class="text-blue-600">OCTRIO</span></div>
-            <a href="mailto:alifoctrio@gmail.com" class="text-[10px] font-bold tracking-[0.2em] uppercase border border-white/20 px-4 py-2 rounded-full hover:bg-white hover:text-black transition">Hire Me</a>
+    <nav class="fixed w-full z-[100] bg-black/90 backdrop-blur-md border-b border-white/5 italic">
+        <div class="max-w-6xl mx-auto px-6 h-20 flex justify-between items-center italic">
+            <div class="text-xl font-black tracking-tighter uppercase italic italic">ALIF <span class="text-blue-600 italic">OCTRIO</span></div>
+            <a href="mailto:alifoctrio@gmail.com" class="text-[10px] font-bold tracking-[0.2em] uppercase border border-white/20 px-6 py-2 rounded-full hover:bg-white hover:text-black transition italic italic">Connect</a>
         </div>
     </nav>
 
-    <main class="max-w-6xl mx-auto px-6">
+    <main class="max-w-6xl mx-auto px-6 italic">
         
-        <!-- Hero Section -->
-        <section class="min-h-screen flex flex-col md:flex-row items-center justify-between pt-32 pb-20 gap-10">
-            <div class="md:w-1/2 text-center md:text-left">
+        <!-- Hero -->
+        <section class="min-h-screen flex flex-col md:flex-row items-center justify-between pt-32 pb-20 gap-10 italic">
+            <div class="md:w-1/2 text-center md:text-left italic">
                 <span class="font-heading text-blue-500 font-bold tracking-[0.4em] uppercase text-[10px] mb-4 block italic">Project Manager | AI Operations</span>
-                <h1 class="font-heading text-6xl md:text-8xl font-black tracking-tighter mb-8 text-glow leading-none italic">LOGIC & <br><span class="text-blue-600">DATA.</span></h1>
-                <p class="text-slate-400 text-lg md:text-xl font-light leading-relaxed mb-10 border-l-2 border-blue-600 pl-6 italic">
-                    Improving AI accuracy from <span class="text-white font-bold tracking-widest italic">60% to 90%</span>.
+                <h1 class="font-heading text-6xl md:text-8xl font-black tracking-tighter mb-8 text-glow leading-[0.9] italic italic italic">STRATEGIC <br><span class="text-blue-600 italic italic">LOGIC.</span></h1>
+                <p class="text-slate-400 text-lg md:text-xl font-light leading-relaxed mb-10 border-l-2 border-blue-600 pl-6 italic italic">
+                    Improving AI accuracy from <span class="text-white font-bold tracking-widest italic italic">60% to 90%</span>. Specialized in bridging R&D pipelines with production-ready business outcomes.
                 </p>
-                <div class="flex flex-wrap justify-center md:justify-start gap-4">
-                    <a href="#experience" class="bg-white text-black px-8 py-3 rounded-full font-bold text-[10px] uppercase tracking-widest">See Journey</a>
+                <div class="flex flex-wrap justify-center md:justify-start gap-4 italic italic">
+                    <a href="#experience" class="bg-white text-black px-8 py-3 rounded-full font-bold text-[10px] uppercase tracking-widest italic">Experience</a>
+                    <a href="https://www.linkedin.com/in/alifoctrio" target="_blank" class="border border-white/20 px-8 py-3 rounded-full font-bold text-[10px] uppercase tracking-widest italic">LinkedIn</a>
                 </div>
             </div>
             
-            <div class="md:w-1/2 flex justify-center">
-                <div class="relative group">
-                    <div class="absolute -inset-1 bg-blue-600 rounded-2xl blur opacity-20 group-hover:opacity-40 transition duration-1000"></div>
+            <div class="md:w-1/2 flex justify-center italic">
+                <div class="relative group italic">
+                    <div class="absolute -inset-1 bg-blue-600 rounded-2xl blur opacity-20 group-hover:opacity-40 transition duration-1000 italic"></div>
                     <img src="alif.jpg" alt="Alif Octrio" onerror="this.src='https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=500&auto=format&fit=crop'" 
-                         class="relative w-72 h-72 md:w-96 md:h-96 object-cover rounded-2xl border border-white/10 grayscale hover:grayscale-0 transition duration-700 shadow-2xl">
+                         class="relative w-72 h-72 md:w-80 md:h-80 object-cover rounded-2xl border border-white/10 grayscale hover:grayscale-0 transition duration-700 shadow-2xl italic">
                 </div>
             </div>
         </section>
 
         <!-- Journey Section -->
         <section id="experience" class="py-20 border-t border-white/5 italic">
-            <h2 class="font-heading text-4xl font-black mb-12 tracking-tighter uppercase italic">The Journey <span class="text-blue-500 font-light text-sm tracking-widest ml-4 italic">(Interact to Deep Dive)</span></h2>
+            <h2 class="font-heading text-4xl font-black mb-12 tracking-tighter uppercase italic italic italic">The Journey <span class="text-blue-500 font-light text-sm tracking-widest ml-4 italic italic italic">(Detailed Portfolio)</span></h2>
             
-            <div class="space-y-6">
-                <!-- JOURNEY 1 -->
-                <div class="glass-card p-6 md:p-8 rounded-2xl" onclick="toggleAccordion(this)">
-                    <div class="flex justify-between items-center">
-                        <div>
-                            <span class="text-blue-500 font-bold text-[10px] tracking-widest uppercase italic">Feb 2024 — Sep 2025</span>
-                            <h3 class="text-2xl font-bold text-white mt-1 italic">Project Manager (Hype Games)</h3>
-                        </div>
-                        <i class="fas fa-plus text-slate-500 icon-rotate"></i>
-                    </div>
-                    <div class="content-expand">
-                        <div class="h-px bg-white/5 w-full mb-6"></div>
-                        <p class="text-slate-400 mb-6 italic">Strategic product and business initiatives translating AI capabilities into actionable market decisions.</p>
-                        <div class="grid md:grid-cols-2 gap-8">
-                            <div>
-                                <h4 class="text-white font-bold text-[10px] uppercase tracking-widest mb-4 italic">Contributions:</h4>
-                                <ul class="space-y-2 text-sm text-slate-500">
-                                    <li>• Market intelligence via web scraping.</li>
-                                    <li>• Sentiment analysis for marketing pivots.</li>
-                                    <li>• Built tracking systems for 400+ daily submissions.</li>
-                                </ul>
-                            </div>
-                            <div>
-                                <h4 class="text-white font-bold text-[10px] uppercase tracking-widest mb-4 italic">Skills Applied:</h4>
-                                <div class="flex flex-wrap gap-2">
-                                    <span class="skill-badge italic">Business Analysis</span>
-                                    <span class="skill-badge italic">Web Scraping</span>
-                                    <span class="skill-badge italic">KPI Tracking</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- JOURNEY 2 -->
+            <div class="space-y-6 italic">
+                <!-- EKLIPSE 1 -->
                 <div class="glass-card p-6 md:p-8 rounded-2xl" onclick="toggleAccordion(this)">
                     <div class="flex justify-between items-center italic">
                         <div>
-                            <span class="text-blue-500 font-bold text-[10px] tracking-widest uppercase italic">Apr 2024 — Aug 2025</span>
-                            <h3 class="text-2xl font-bold text-white mt-1 italic">Lead AI & Data Optimization</h3>
+                            <span class="text-blue-500 font-bold text-[10px] tracking-widest uppercase italic italic">Feb 2024 — Sep 2025</span>
+                            <h3 class="text-2xl font-bold text-white mt-1 italic italic">Project Manager & Market Strategy</h3>
                         </div>
-                        <i class="fas fa-plus text-slate-500 icon-rotate"></i>
-                    </div>
-                    <div class="content-expand">
-                        <div class="h-px bg-white/5 w-full mb-6"></div>
-                        <p class="text-slate-400 mb-6 italic">Improved AI success rate from 60% to 90% and boosted efficiency by 80%.</p>
-                        <div class="grid md:grid-cols-2 gap-8">
-                            <div>
-                                <h4 class="text-white font-bold text-[10px] uppercase tracking-widest mb-4 italic">Contributions:</h4>
-                                <ul class="space-y-2 text-sm text-slate-500 italic">
-                                    <li>• Pipeline optimization & bottleneck resolution.</li>
-                                    <li>• Competitor AI reverse-engineering.</li>
-                                    <li>• Established feedback loops AI vs User.</li>
-                                </ul>
-                            </div>
-                            <div>
-                                <h4 class="text-white font-bold text-[10px] uppercase tracking-widest mb-4 italic">Skills Applied:</h4>
-                                <div class="flex flex-wrap gap-2">
-                                    <span class="skill-badge italic">AI Operations</span>
-                                    <span class="skill-badge italic">Benchmarking</span>
-                                    <span class="skill-badge italic">Automation</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- JOURNEY 3 -->
-                <div class="glass-card p-6 md:p-8 rounded-2xl" onclick="toggleAccordion(this)">
-                    <div class="flex justify-between items-center italic">
-                        <div>
-                            <span class="text-blue-500 font-bold text-[10px] tracking-widest uppercase italic">Aug 2022 — Apr 2024</span>
-                            <h3 class="text-2xl font-bold text-white mt-1 italic">AI & Data Optimization Staff</h3>
-                        </div>
-                        <i class="fas fa-plus text-slate-500 icon-rotate"></i>
+                        <i class="fas fa-plus text-slate-500 icon-rotate italic"></i>
                     </div>
                     <div class="content-expand italic">
-                        <div class="h-px bg-white/5 w-full mb-6 italic"></div>
-                        <p class="text-slate-400 mb-6 italic">Facebook Gaming Partnership supporting AI scalability via dataset quality QA.</p>
-                        <div class="grid md:grid-cols-2 gap-8 italic">
-                            <div>
-                                <h4 class="text-white font-bold text-[10px] uppercase tracking-widest mb-4 italic">Contributions:</h4>
-                                <ul class="space-y-2 text-sm text-slate-500 italic">
-                                    <li>• Improved AI stability by 20% via dataset enhancement.</li>
-                                    <li>• Managed large-scale labeling validation.</li>
-                                    <li>• Integrated user feedback into R&D cycles.</li>
-                                </ul>
-                            </div>
-                            <div>
-                                <h4 class="text-white font-bold text-[10px] uppercase tracking-widest mb-4 italic italic">Skills Applied:</h4>
-                                <div class="flex flex-wrap gap-2 italic">
-                                    <span class="skill-badge italic">Data QA</span>
-                                    <span class="skill-badge italic">Dataset Mgmt</span>
-                                    <span class="skill-badge italic">Validation</span>
-                                </div>
-                            </div>
+                        <p class="text-slate-400 mb-6 italic italic italic">Eklipse.gg | Led data-driven initiatives by translating AI capabilities into product roadmap decisions.</p>
+                        <ul class="space-y-2 text-sm text-slate-500 mb-6 italic">
+                            <li>• Conducted market intelligence & competitor analysis via web scraping.</li>
+                            <li>• Built internal KPI systems tracking NRU & 400+ daily submissions.</li>
+                            <li>• Acted as strategic bridge between Product, Marketing, and AI teams.</li>
+                        </ul>
+                        <div class="flex flex-wrap gap-2 italic">
+                            <span class="skill-badge italic">Business Analysis</span><span class="skill-badge italic italic">GTM Support</span><span class="skill-badge italic">Web Scraping</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- EKLIPSE 2 -->
+                <div class="glass-card p-6 md:p-8 rounded-2xl" onclick="toggleAccordion(this)">
+                    <div class="flex justify-between items-center italic">
+                        <div>
+                            <span class="text-blue-500 font-bold text-[10px] tracking-widest uppercase italic italic">Apr 2024 — Aug 2025</span>
+                            <h3 class="text-2xl font-bold text-white mt-1 italic italic">Lead AI and Data Optimization</h3>
+                        </div>
+                        <i class="fas fa-plus text-slate-500 icon-rotate italic"></i>
+                    </div>
+                    <div class="content-expand italic">
+                        <p class="text-slate-400 mb-6 italic italic italic">Eklipse.gg | Improved operational success rate from 60% to 90% through workflow optimization.</p>
+                        <ul class="space-y-2 text-sm text-slate-500 mb-6 italic">
+                            <li>• Boosted team efficiency by ~80% through process optimization & bottleneck resolution.</li>
+                            <li>• Built monitoring frameworks to track quality, reliability, and delivery timelines.</li>
+                            <li>• Established feedback loops between AI output and user behavior.</li>
+                        </ul>
+                        <div class="flex flex-wrap gap-2 italic">
+                            <span class="skill-badge italic">AI Operations</span><span class="skill-badge italic italic">Workflow Optimization</span><span class="skill-badge italic italic">Team Leadership</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- EKLIPSE 3 -->
+                <div class="glass-card p-6 md:p-8 rounded-2xl" onclick="toggleAccordion(this)">
+                    <div class="flex justify-between items-center italic">
+                        <div>
+                            <span class="text-blue-500 font-bold text-[10px] tracking-widest uppercase italic italic">May 2023 — Sep 2025</span>
+                            <h3 class="text-2xl font-bold text-white mt-1 italic italic">AI Technical Benchmark & Competitive Analysis</h3>
+                        </div>
+                        <i class="fas fa-plus text-slate-500 icon-rotate italic italic"></i>
+                    </div>
+                    <div class="content-expand italic">
+                        <p class="text-slate-400 mb-6 italic italic">Strengthened AI accuracy through systematic benchmarking and reverse-engineering.</p>
+                        <ul class="space-y-2 text-sm text-slate-500 mb-6 italic italic italic">
+                            <li>• Improved clip detection accuracy from 60% to 90% via gap analysis.</li>
+                            <li>• Identified high-impact optimization areas early in development stages.</li>
+                            <li>• Maintained competitive intelligence documentation for product evaluation.</li>
+                        </ul>
+                        <div class="flex flex-wrap gap-2 italic">
+                            <span class="skill-badge italic">Benchmarking</span><span class="skill-badge italic italic italic">Competitive Intelligence</span><span class="skill-badge italic italic">R&D Translation</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- MAINGAMES -->
+                <div class="glass-card p-6 md:p-8 rounded-2xl" onclick="toggleAccordion(this)">
+                    <div class="flex justify-between items-center italic">
+                        <div>
+                            <span class="text-blue-500 font-bold text-[10px] tracking-widest uppercase italic italic">Aug 2022 — Apr 2024</span>
+                            <h3 class="text-2xl font-bold text-white mt-1 italic italic italic">AI and Data Optimization Staff</h3>
+                        </div>
+                        <i class="fas fa-plus text-slate-500 icon-rotate italic"></i>
+                    </div>
+                    <div class="content-expand italic">
+                        <p class="text-slate-400 mb-6 italic italic italic">PT. MAINGAMES | Improved AI system stability by 20% via dataset quality enhancement.</p>
+                        <ul class="space-y-2 text-sm text-slate-500 mb-6 italic">
+                            <li>• Performed large-scale data labeling QA, bounding box correction, and audits.</li>
+                            <li>• Integrated App Store reviews & social feedback into continuous improvement cycles.</li>
+                            <li>• Maintained production-grade data reliability for long-term scalability.</li>
+                        </ul>
+                        <div class="flex flex-wrap gap-2 italic">
+                            <span class="skill-badge italic">Dataset Mgmt</span><span class="skill-badge italic italic">Quality Assurance</span><span class="skill-badge italic italic">Labeling QA</span>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Expertise Hierarchy -->
+        <!-- Expertise -->
         <section id="skills" class="py-20 border-t border-white/5 italic">
-            <h2 class="font-heading text-4xl font-black mb-12 tracking-tighter uppercase text-center italic">Expertise Hierarchy</h2>
+            <h2 class="font-heading text-4xl font-black mb-12 tracking-tighter uppercase text-center italic">Core Expertise</h2>
             <div class="grid md:grid-cols-3 gap-8 italic">
                 <div class="p-8 glass-card rounded-2xl border-l-4 border-blue-600 italic">
-                    <h4 class="text-blue-500 font-bold text-[10px] tracking-widest uppercase mb-6 italic">Market Analysis</h4>
-                    <ul class="space-y-4 text-slate-400 text-sm italic">
-                        <li class="flex flex-col gap-1 italic"><span class="text-white font-bold italic">Web Scraping</span><span class="text-[10px] italic">Competitive intelligence extraction.</span></li>
-                        <li class="flex flex-col gap-1 italic"><span class="text-white font-bold italic">Sentiment Analysis</span><span class="text-[10px] italic">User feedback roadmap mapping.</span></li>
+                    <h4 class="text-blue-500 font-bold text-[10px] tracking-widest uppercase mb-6 italic">Management</h4>
+                    <ul class="text-slate-400 text-sm space-y-2 italic">
+                        <li class="italic">• Technical Project Management</li>
+                        <li class="italic">• Product Roadmap Planning</li>
+                        <li class="italic">• Stakeholder Management</li>
                     </ul>
                 </div>
                 <div class="p-8 glass-card rounded-2xl border-l-4 border-blue-600 italic">
-                    <h4 class="text-blue-500 font-bold text-[10px] tracking-widest uppercase mb-6 italic">AI Operations</h4>
-                    <ul class="space-y-4 text-slate-400 text-sm italic">
-                        <li class="flex flex-col gap-1 italic"><span class="text-white font-bold italic">Benchmarking</span><span class="text-[10px] italic">AI gap analysis against global products.</span></li>
-                        <li class="flex flex-col gap-1 italic"><span class="text-white font-bold italic">Prompt Eng.</span><span class="text-[10px] italic">Optimizing LLM outputs for content.</span></li>
+                    <h4 class="text-blue-500 font-bold text-[10px] tracking-widest uppercase mb-6 italic">AI & Analytics</h4>
+                    <ul class="text-slate-400 text-sm space-y-2 italic italic">
+                        <li class="italic">• AI Performance Monitoring</li>
+                        <li class="italic">• Competitive Intelligence</li>
+                        <li class="italic">• Prompt Engineering</li>
                     </ul>
                 </div>
                 <div class="p-8 glass-card rounded-2xl border-l-4 border-blue-600 italic">
-                    <h4 class="text-blue-500 font-bold text-[10px] tracking-widest uppercase mb-6 italic">Strategy & Logic</h4>
-                    <ul class="space-y-4 text-slate-400 text-sm italic">
-                        <li class="flex flex-col gap-1 italic"><span class="text-white font-bold italic">Decision Logic</span><span class="text-[10px] italic">Philosophical frameworks for bottlenecks.</span></li>
-                        <li class="flex flex-col gap-1 italic"><span class="text-white font-bold italic">KPI Architecture</span><span class="text-[10px] italic">Building data monitoring for NRU & Subs.</span></li>
+                    <h4 class="text-blue-500 font-bold text-[10px] tracking-widest uppercase mb-6 italic">Foundation</h4>
+                    <ul class="text-slate-400 text-sm space-y-2 italic">
+                        <li class="italic">• Universitas Gadjah Mada (Philosophy)</li>
+                        <li class="italic">• Logic & Strategic Decision Making</li>
+                        <li class="italic">• Ethics in Data Management</li>
                     </ul>
                 </div>
             </div>
-        </section>
-
-        <!-- Academic -->
-        <section class="py-20 border-t border-white/5 text-center italic">
-            <h3 class="font-heading text-4xl md:text-6xl font-black text-white italic">UNIVERSITAS GADJAH MADA</h3>
-            <p class="text-blue-500 font-bold mt-4 italic italic">Bachelor of Philosophy • GPA 3.06</p>
         </section>
 
         <!-- Footer -->
         <footer class="py-20 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-10 italic">
-            <div class="text-center md:text-left">
-                <h2 class="text-4xl font-black italic">alifoctrio@gmail.com</h2>
-                <div class="flex gap-4 mt-4 text-[10px] font-bold tracking-widest text-slate-500 uppercase justify-center md:justify-start">
-                    <a href="https://www.linkedin.com/in/alifoctrio" target="_blank" class="hover:text-white transition">LinkedIn</a>
-                    <a href="tel:+6281336700117" class="hover:text-white transition italic">Contact</a>
-                </div>
+            <h2 class="text-4xl font-black italic">alifoctrio@gmail.com</h2>
+            <div class="flex gap-8 text-[10px] font-bold tracking-widest text-slate-500 uppercase italic">
+                <a href="https://www.linkedin.com/in/alifoctrio" target="_blank" class="hover:text-white italic transition">LinkedIn</a>
+                <span>+62 813 3670 0117</span>
             </div>
-            <p class="text-[8px] text-slate-800 tracking-[1em] uppercase italic">Alif Octrio • Strategic AI Ops</p>
         </footer>
 
     </main>
 
     <script>
         function toggleAccordion(element) {
-            // Close all other accordions
             document.querySelectorAll('.glass-card').forEach(card => {
-                if (card !== element) {
-                    card.classList.remove('active');
-                }
+                if (card !== element) card.classList.remove('active');
             });
-            // Toggle current
             element.classList.toggle('active');
         }
     </script>
