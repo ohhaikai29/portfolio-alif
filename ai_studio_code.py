@@ -1,10 +1,10 @@
 from flask import Flask, render_template
 
+# Flask otomatis nyari folder 'templates' di lokasi yang sama dengan index.py
 app = Flask(__name__)
 
 @app.route('/')
 def home():
-    # Data Persona Anda
     stats = {
         "level": 3,
         "hp": 999,
@@ -15,5 +15,5 @@ def home():
     }
     return render_template('index.html', stats=stats)
 
-if __name__ == '__main__':
-    app.run(debug=True)
+# Ini wajib supaya Vercel bisa nangkep aplikasinya
+app.debug = True
