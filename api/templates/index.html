@@ -10,53 +10,68 @@
         :root { --red: #D32F2F; --black: #000000; --white: #FFFFFF; }
         body { background: var(--black); color: var(--white); font-family: 'Oswald', sans-serif; margin: 0; overflow-x: hidden; }
         
-        /* Persona Slanted Background */
         .bg-stripe {
             position: fixed; top: 0; left: -10%; width: 120%; height: 120%;
             background: repeating-linear-gradient(45deg, #111, #111 10px, #000 10px, #000 20px);
             z-index: -1; transform: rotate(-5deg);
         }
 
-        /* Name Header */
         .header-box {
-            background: var(--red); color: white; padding: 20px 80px;
-            transform: rotate(-3deg) translateX(-30px);
-            border: 6px solid white; margin-top: 40px; display: inline-block;
-            box-shadow: 10px 10px 0px var(--black);
+            background: var(--red); color: white; padding: 15px 60px;
+            transform: rotate(-2deg) translateX(-20px);
+            border: 5px solid white; margin-top: 30px; display: inline-block;
+            box-shadow: 8px 8px 0px var(--black);
         }
-        h1 { font-family: 'Permanent Marker', cursive; font-size: 4rem; margin: 0; text-transform: uppercase; }
+        h1 { font-family: 'Permanent Marker', cursive; font-size: 3.5rem; margin: 0; text-transform: uppercase; }
 
-        .main-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; padding: 50px; }
+        .main-grid { display: grid; grid-template-columns: 350px 1fr; gap: 30px; padding: 40px; }
 
-        /* Left Side: Character Card */
+        /* Profile Picture Frame */
+        .profile-frame {
+            width: 100%; height: 300px; background: var(--white);
+            border: 5px solid var(--red); transform: rotate(-3deg);
+            overflow: hidden; margin-bottom: 20px; position: relative;
+        }
+        .profile-frame img {
+            width: 100%; height: 100%; object-fit: cover;
+            filter: grayscale(100%) contrast(120%); transition: 0.3s;
+        }
+        .profile-frame:hover img { filter: grayscale(0%) contrast(100%); }
+
+        /* Status Card */
         .char-card {
-            background: var(--white); color: var(--black); padding: 30px;
-            border: 8px solid var(--red); transform: rotate(2deg);
-            box-shadow: 15px 15px 0px var(--red);
+            background: var(--white); color: var(--black); padding: 25px;
+            border: 6px solid var(--red); transform: rotate(1deg);
+            box-shadow: 10px 10px 0px var(--red);
         }
-        .lvl-badge { background: var(--black); color: white; padding: 5px 20px; font-size: 2rem; display: inline-block; transform: skew(-10deg); }
-        .stat-line { font-size: 1.5rem; border-bottom: 2px solid #ccc; margin: 10px 0; display: flex; justify-content: space-between; }
+        .lvl-badge { background: var(--black); color: white; padding: 2px 15px; font-size: 1.8rem; display: inline-block; transform: skew(-10deg); }
+        .rank-text { font-size: 1rem; color: var(--red); font-weight: bold; display: block; margin-top: 5px; }
 
-        /* Right Side: Quest Log */
-        .quest-box { background: rgba(0,0,0,0.8); border: 2px solid var(--red); padding: 20px; transform: skew(-3deg); }
+        /* Quest System */
         .quest-item {
-            border-left: 8px solid var(--red); background: #1a1a1a;
-            padding: 15px; margin-bottom: 15px; transition: 0.3s;
+            background: #1a1a1a; border-left: 8px solid var(--red);
+            padding: 15px; margin-bottom: 15px; transform: skew(-3deg);
+            transition: 0.3s; cursor: pointer; position: relative;
         }
-        .quest-item:hover { background: var(--red); transform: scale(1.05); }
+        .quest-item:hover { background: var(--red); transform: scale(1.03) skew(-3deg); }
+        .quest-details { display: none; background: #222; padding: 10px; margin-top: 10px; font-size: 0.9rem; border: 1px dashed white; }
 
-        .radar-box { background: rgba(255,255,255,0.05); padding: 20px; border: 2px solid white; }
+        /* Modal Contact */
+        .modal {
+            display: none; position: fixed; z-index: 100; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.9); justify-content: center; align-items: center;
+        }
+        .calling-card {
+            background: var(--red); color: white; padding: 40px; border: 10px solid white;
+            transform: rotate(-2deg); max-width: 500px; text-align: center; font-family: 'Permanent Marker';
+        }
 
         .btn-showtime {
-            background: var(--red); color: white; padding: 20px 40px;
-            font-family: 'Permanent Marker'; font-size: 2rem;
-            border: 5px solid white; text-decoration: none;
-            display: inline-block; margin-top: 30px; transform: rotate(-2deg);
-            transition: 0.2s;
+            background: var(--red); color: white; padding: 15px 30px;
+            font-family: 'Permanent Marker'; font-size: 1.8rem;
+            border: 4px solid white; cursor: pointer; display: block;
+            width: 100%; margin-top: 20px; transform: rotate(-1deg);
         }
-        .btn-showtime:hover { background: white; color: var(--red); transform: scale(1.1) rotate(0deg); }
-
-        @media (max-width: 768px) { .main-grid { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
@@ -67,71 +82,89 @@
     </div>
 
     <div class="main-grid">
-        <!-- STATUS PANEL -->
+        <!-- SIDEBAR -->
         <div>
-            <div class="char-card">
-                <div class="lvl-badge">LVL 0{{ stats.level }}</div>
-                <h2 style="margin-top:10px;">CLASS: AI OPERATIONS & PM</h2>
-                <div class="stat-line"><span>HP</span> <span>{{ stats.hp }}/{{ stats.hp }}</span></div>
-                <div class="stat-line"><span>SP</span> <span>{{ stats.sp }}/{{ stats.sp }}</span></div>
-                <p><strong>PERSONA:</strong> {{ stats.persona_name }}</p>
-                <p><strong>PASSIVE:</strong> {{ stats.philosophy_perk }}</p>
-                <div style="background:#eee; height:10px; width:100%;"><div style="background:var(--red); height:100%; width:{{stats.exp_percent}}%;"></div></div>
-                <p style="font-size:0.8rem;">NEXT LVL: 65% EXP REQUIRED</p>
+            <div class="profile-frame">
+                <img src="/alif.jpg" alt="Alif Octrio">
             </div>
-
-            <div class="radar-box" style="margin-top:30px;">
+            <div class="char-card">
+                <div class="lvl-badge">LVL {{ stats.level }}</div>
+                <span class="rank-text">{{ stats.rank }}</span>
+                <p style="margin: 0; font-size: 0.8rem;">{{ stats.exp_years }}</p>
+                <hr>
+                <p>HP: {{ stats.hp }}/{{ stats.hp }}</p>
+                <p>SP: {{ stats.sp }}/{{ stats.sp }}</p>
+                <p><strong>PASSIVE:</strong> {{ stats.philosophy_perk }}</p>
+            </div>
+            <div style="margin-top: 20px; background: rgba(255,255,255,0.1); padding: 10px;">
                 <canvas id="skillsChart"></canvas>
             </div>
         </div>
 
-        <!-- QUEST LOG PANEL -->
+        <!-- CONTENT -->
         <div>
-            <h2 style="font-family:'Permanent Marker'; color:var(--red); font-size:2.5rem;">[ COMPLETED QUESTS ]</h2>
-            <div class="quest-box">
-                <div class="quest-item">
-                    <h3>OP: EKLIPSE MASTERY</h3>
-                    <p>Optimized AI Accuracy 60% → 90% | Led Market Strategy.</p>
-                </div>
-                <div class="quest-item">
-                    <h3>OP: DATA FOUNDATION</h3>
-                    <p>PT Maingames | Stability +20% | Reduced Training Noise.</p>
-                </div>
-                <div class="quest-item">
-                    <h3>OP: PHILOSOPHY AWAKENING</h3>
-                    <p>UGM Graduate | Logic, Ethics, & Epistemology Unlocked.</p>
+            <h2 style="font-family:'Permanent Marker'; color:var(--red); font-size:2.5rem; margin-top:0;">[ ACTIVE QUESTS ]</h2>
+            <p style="font-style: italic;">*Click a quest to reveal Mission Intel</p>
+            
+            {% for quest in stats.quests %}
+            <div class="quest-item" onclick="toggleQuest('{{ quest.id }}')">
+                <h3 style="margin:0;">{{ quest.title }}</h3>
+                <p style="margin:5px 0 0 0; color:#ccc;">{{ quest.short }}</p>
+                <div id="{{ quest.id }}" class="quest-details">
+                    <ul style="padding-left:20px;">
+                        {% for detail in quest.details %}
+                        <li>{{ detail }}</li>
+                        {% endfor %}
+                    </ul>
                 </div>
             </div>
-            
-            <a href="mailto:alifoctrio@gmail.com" class="btn-showtime">IT'S SHOWTIME!</a>
+            {% endfor %}
+
+            <button class="btn-showtime" onclick="showContact()">IT'S SHOWTIME!</button>
+        </div>
+    </div>
+
+    <!-- CONTACT MODAL -->
+    <div id="contactModal" class="modal" onclick="this.style.display='none'">
+        <div class="calling-card" onclick="event.stopPropagation()">
+            <h2 style="font-size: 3rem;">TAKE YOUR HEART!</h2>
+            <p style="font-family: 'Oswald'; font-size: 1.2rem;">Let's start a Co-op operation:</p>
+            <hr>
+            <p style="font-family: 'Oswald';">📧 {{ stats.contact.email }}</p>
+            <p style="font-family: 'Oswald';">📱 {{ stats.contact.phone }}</p>
+            <p style="font-family: 'Oswald';">🔗 {{ stats.contact.linkedin }}</p>
+            <button onclick="this.parentElement.parentElement.style.display='none'" style="background:white; color:red; border:none; padding:10px 20px; font-family:'Permanent Marker'; cursor:pointer;">CLOSE</button>
         </div>
     </div>
 
     <script>
+        function toggleQuest(id) {
+            var x = document.getElementById(id);
+            if (x.style.display === "block") {
+                x.style.display = "none";
+            } else {
+                x.style.display = "block";
+            }
+        }
+
+        function showContact() {
+            document.getElementById('contactModal').style.display = 'flex';
+        }
+
         const ctx = document.getElementById('skillsChart');
         new Chart(ctx, {
             type: 'radar',
             data: {
                 labels: ['Knowledge', 'Guts', 'Proficiency', 'Kindness', 'Charm'],
                 datasets: [{
-                    label: 'Social Stats',
                     data: {{ stats.social_stats|tojson }},
                     backgroundColor: 'rgba(211, 47, 47, 0.7)',
                     borderColor: '#FFFFFF',
-                    borderWidth: 4,
-                    pointBackgroundColor: '#FFFFFF'
+                    borderWidth: 3
                 }]
             },
             options: {
-                scales: {
-                    r: {
-                        angleLines: { color: 'white' },
-                        grid: { color: 'white' },
-                        pointLabels: { color: 'white', font: { size: 16, family: 'Oswald' } },
-                        ticks: { display: false },
-                        min: 0, max: 5
-                    }
-                },
+                scales: { r: { angleLines: { display: false }, grid: { color: 'white' }, pointLabels: { color: 'white' }, ticks: { display: false }, min: 0, max: 5 } },
                 plugins: { legend: { display: false } }
             }
         });
