@@ -3,178 +3,170 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ALIF OCTRIO | P3R DOSSIER</title>
-    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Montserrat:ital,wght@0,400;0,900;1,900&display=swap" rel="stylesheet">
+    <title>ALIF OCTRIO | HUD</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;900&family=Permanent+Marker&family=Exo+2:ital,wght@1,900&display=swap" rel="stylesheet">
     <style>
-        :root { --blue: #00A3FF; --dark-blue: #001A33; --cyan: #00F0FF; --white: #FFFFFF; }
+        :root { --p3-blue: #00CCFF; --deep-navy: #000B18; --glow: #00F0FF; --white: #FFFFFF; }
         
-        * { box-sizing: border-box; }
+        * { box-sizing: border-box; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
         body { 
-            background: var(--dark-blue); color: var(--white); 
-            font-family: 'Montserrat', sans-serif; margin: 0; overflow-x: hidden;
+            background: var(--deep-navy); color: var(--white); 
+            font-family: 'Orbitron', sans-serif; margin: 0; overflow: hidden;
+            height: 100vh; width: 100vw;
         }
 
-        /* BACKGROUND P3R STYLE */
-        .bg-p3r {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;
-            background: linear-gradient(135deg, #001021 0%, #002b4d 100%);
+        /* DYNAMIC P3R BACKGROUND */
+        .bg-canvas {
+            position: fixed; top:0; left:0; width:100%; height:100%; z-index:-1;
+            background: radial-gradient(circle at center, #002b4d 0%, #000810 100%);
         }
-        .bg-overlay {
-            position: absolute; width: 150%; height: 150%; top: -25%; left: -25%;
-            background-image: radial-gradient(var(--blue) 1px, transparent 1px);
-            background-size: 40px 40px; opacity: 0.1; transform: rotate(15deg);
-        }
-
-        /* HEADER */
-        .header {
-            padding: 40px 60px; position: relative;
-            border-bottom: 8px solid var(--blue); background: rgba(0,0,0,0.5);
-            display: flex; align-items: center; justify-content: space-between;
-        }
-        .header h1 { 
-            font-family: 'Archivo Black', sans-serif; font-size: 4rem; margin: 0;
-            font-style: italic; text-transform: uppercase; letter-spacing: -2px;
-            color: var(--white); text-shadow: 4px 4px 0px var(--blue);
+        .bubbles {
+            position: absolute; top:0; left:0; width:100%; height:100%;
+            background: url('https://www.transparenttextures.com/patterns/carbon-fibre.png');
+            opacity: 0.1;
         }
 
-        .main-grid { display: grid; grid-template-columns: 380px 1fr; gap: 40px; padding: 40px 60px; }
-
-        /* PROFILE PHOTO (P3R Style: Sharp Blue Frame) */
-        .p3r-photo {
-            width: 100%; height: 350px; border: 4px solid var(--cyan);
-            position: relative; overflow: hidden; box-shadow: 0 0 30px rgba(0, 163, 255, 0.5);
-            clip-path: polygon(0 0, 100% 0, 100% 90%, 90% 100%, 0 100%); margin-bottom: 25px;
-        }
-        .p3r-photo img { 
-            width: 100%; height: 100%; object-fit: cover; 
-            filter: brightness(1.1) contrast(1.1); transition: 0.5s;
-        }
-        .p3r-photo:hover img { transform: scale(1.1); }
-
-        /* SIDEBAR CARDS (Glassmorphism) */
-        .glass-card {
-            background: rgba(0, 163, 255, 0.1); backdrop-filter: blur(10px);
-            border: 2px solid rgba(255, 255, 255, 0.2); padding: 25px;
-            border-left: 10px solid var(--cyan); margin-bottom: 20px;
-        }
-        .lvl-badge { 
-            font-family: 'Archivo Black'; font-size: 2.5rem; 
-            color: var(--cyan); border-bottom: 4px solid var(--white);
+        /* HUD LAYOUT */
+        .hud-container {
+            display: grid; grid-template-columns: 450px 1fr 300px;
+            height: 100vh; padding: 40px; gap: 20px;
         }
 
-        /* MISSIONS (Sharp Slanted Bars) */
-        .mission-bar {
-            background: rgba(255, 255, 255, 0.9); color: var(--dark-blue);
-            padding: 15px 30px; margin-bottom: 15px; cursor: pointer;
-            transition: 0.3s; clip-path: polygon(0 0, 95% 0, 100% 100%, 5% 100%);
-            display: flex; justify-content: space-between; align-items: center;
+        /* LEFT HUD: PROFILE & STATS */
+        .profile-section { display: flex; flex-direction: column; gap: 20px; }
+        
+        .portrait-frame {
+            width: 100%; height: 400px; background: rgba(0, 204, 255, 0.1);
+            border: 4px solid var(--p3-blue); clip-path: polygon(10% 0%, 100% 0%, 90% 100%, 0% 100%);
+            box-shadow: 0 0 50px rgba(0, 204, 255, 0.3); overflow: hidden; position: relative;
         }
-        .mission-bar:hover { 
-            background: var(--cyan); transform: translateX(20px);
-            box-shadow: -10px 0 0 var(--white);
-        }
-        .mission-bar h3 { font-family: 'Archivo Black'; margin: 0; font-size: 1.2rem; }
-
-        .intel-box {
-            display: none; background: rgba(0, 26, 51, 0.9); padding: 20px;
-            border: 2px solid var(--cyan); margin-top: -10px; margin-bottom: 20px;
-            font-size: 0.9rem; line-height: 1.6;
+        .portrait-frame img { 
+            width: 110%; height: 110%; object-fit: cover; filter: brightness(1.2) cyanosis;
+            transform: rotate(2deg) scale(1.1);
         }
 
-        /* BUTTON (P3R Blue) */
-        .btn-p3r {
-            background: var(--blue); color: white; border: 4px solid var(--white);
-            padding: 20px; font-family: 'Archivo Black'; font-size: 1.5rem;
-            width: 100%; cursor: pointer; transition: 0.2s;
-            clip-path: polygon(5% 0, 100% 0, 95% 100%, 0 100%);
+        .stat-card {
+            background: rgba(255, 255, 255, 0.9); color: var(--deep-navy);
+            padding: 20px; transform: skew(-10deg); border-left: 15px solid var(--p3-blue);
         }
-        .btn-p3r:hover { background: var(--cyan); transform: scale(1.02); }
+        .lvl-text { font-family: 'Exo 2'; font-size: 3rem; font-style: italic; line-height: 1; }
+
+        /* CENTER HUD: COMBAT MENU (MISSION LOG) */
+        .mission-menu { display: flex; flex-direction: column; justify-content: center; gap: 15px; }
+        
+        .command-bar {
+            background: rgba(0, 204, 255, 0.15); border: 2px solid var(--p3-blue);
+            padding: 20px 40px; width: 100%; cursor: pointer; position: relative;
+            clip-path: polygon(0 0, 95% 0, 100% 100%, 5% 100%);
+        }
+        .command-bar:hover {
+            background: var(--p3-blue); color: var(--deep-navy);
+            transform: scale(1.05) translateX(30px); box-shadow: 0 0 30px var(--glow);
+        }
+        .command-bar h3 { font-family: 'Permanent Marker', cursive; margin: 0; font-size: 1.8rem; }
+        
+        .intel-overlay {
+            display: none; position: fixed; top: 20%; right: 50px; width: 400px;
+            background: rgba(0, 11, 24, 0.95); border: 3px solid var(--p3-blue);
+            padding: 30px; z-index: 100; box-shadow: 0 0 100px rgba(0, 204, 255, 0.5);
+        }
+
+        /* RIGHT HUD: INVENTORY */
+        .inventory-hud { text-align: right; display: flex; flex-direction: column; gap: 10px; }
+        .inv-item { 
+            background: rgba(255,255,255,0.1); padding: 10px; border-right: 5px solid var(--glow);
+            font-size: 0.8rem; letter-spacing: 2px;
+        }
+
+        /* SHOWTIME BUTTON */
+        .showtime-btn {
+            position: fixed; bottom: 50px; right: 60px;
+            background: var(--p3-blue); color: white; border: 4px solid white;
+            padding: 20px 60px; font-family: 'Permanent Marker'; font-size: 2.5rem;
+            transform: rotate(-3deg); cursor: pointer; box-shadow: 10px 10px 0 #000;
+        }
+        .showtime-btn:hover { background: var(--glow); transform: rotate(0) scale(1.1); }
 
         /* CONTACT MODAL */
         .modal {
-            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0, 10, 33, 0.95); z-index: 1000; justify-content: center; align-items: center;
+            display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.9);
+            z-index: 1000; justify-content: center; align-items: center;
         }
-        .terminal {
-            background: #000; border: 5px solid var(--cyan); width: 500px;
-            padding: 40px; position: relative; box-shadow: 0 0 50px var(--blue);
-        }
-        .terminal h2 { font-family: 'Archivo Black'; color: var(--cyan); font-size: 2rem; margin-top: 0; }
-        
-        .inv-tag { 
-            background: var(--blue); color: white; padding: 2px 8px; 
-            font-size: 0.8rem; margin: 2px; display: inline-block; 
+        .calling-card {
+            background: #fff; color: #000; padding: 50px; border: 10px solid var(--p3-blue);
+            transform: rotate(2deg); width: 600px; position: relative;
         }
     </style>
 </head>
 <body>
-    <div class="bg-p3r"><div class="bg-overlay"></div></div>
+    <div class="bg-canvas"><div class="bubbles"></div></div>
 
-    <header class="header">
-        <h1>ALIF OCTRIO</h1>
-        <div style="text-align: right;">
-            <p style="margin:0; font-weight:900;">S.E.E.S. DATABASE</p>
-            <p style="margin:0; font-size: 0.8rem; color: var(--cyan);">ACCESS GRANTED // 2024</p>
-        </div>
-    </header>
-
-    <div class="main-grid">
-        <!-- SIDEBAR -->
-        <div class="sidebar">
-            <div class="p3r-photo">
-                <!-- Foto Alif -->
-                <img src="/static/alif.jpg" onerror="this.src='https://via.placeholder.com/300x400/001A33/00F0FF?text=S.E.E.S.+MEMBER'">
+    <div class="hud-container">
+        <!-- LEFT: PROFILE -->
+        <div class="profile-section">
+            <div class="portrait-frame">
+                <img src="/static/alif.jpg" onerror="this.src='https://via.placeholder.com/400x600/001A33/00F0FF?text=ALIF+OCTRIO'">
             </div>
-
-            <div class="glass-card">
-                <div class="lvl-badge">LVL {{ stats.level }}</div>
-                <p style="margin:10px 0; font-weight:900; color:var(--cyan); letter-spacing: 2px;">{{ stats.rank }}</p>
-                <div style="display:flex; justify-content:space-between; font-size: 1.2rem; border-bottom: 1px solid var(--cyan);">
-                    <span>ACCURACY</span> <b>{{ stats.accuracy }}</b>
+            <div class="stat-card">
+                <div class="lvl-text">LVL {{ stats.level }}</div>
+                <div style="font-weight:900; letter-spacing:3px;">{{ stats.rank }}</div>
+                <div style="margin-top:10px; height:4px; background:black; position:relative;">
+                    <div style="position:absolute; left:0; top:0; height:100%; width:90%; background:var(--p3-blue);"></div>
                 </div>
-                <div style="display:flex; justify-content:space-between; font-size: 1.2rem; margin-top: 10px;">
-                    <span>EFFICIENCY</span> <b>{{ stats.efficiency }}</b>
-                </div>
+                <p style="font-size:0.7rem; margin:5px 0;">HP: 999/999 | SP: 850/850</p>
             </div>
-
-            <div class="glass-card" style="border-left-color: var(--white);">
-                <p style="margin:0 0 10px 0; font-weight:900;">INVENTORY</p>
-                {% for item in stats.inventory %}<span class="inv-tag">{{ item }}</span>{% endfor %}
+            <div style="background:rgba(255,255,255,0.05); padding:15px; border-left: 4px solid var(--glow);">
+                <p style="margin:0 0 10px 0; font-size:0.7rem; color:var(--glow);">SKILL MASTERY</p>
+                {% for s in stats.skills %}
+                <div style="font-size:0.8rem; margin-bottom:5px;">
+                    {{ s.n }} <span style="float:right;">{{ s.v }}%</span>
+                    <div style="height:2px; background:rgba(255,255,255,0.1);"><div style="width:{{s.v}}%; height:100%; background:white;"></div></div>
+                </div>
+                {% endfor %}
             </div>
         </div>
 
-        <!-- CONTENT -->
-        <div class="content">
-            <h2 style="font-family:'Archivo Black'; font-size:2rem; margin-bottom:20px; color:var(--cyan);">[ MISSION HISTORY ]</h2>
-            
+        <!-- CENTER: MISSION COMMANDS -->
+        <div class="mission-menu">
+            <h2 style="font-family:'Permanent Marker'; color:var(--glow); font-size:3rem; margin-bottom:30px;">[ MISSION_LOG ]</h2>
             {% for q in stats.quests %}
-            <div class="mission-bar" onclick="var d=document.getElementById('{{ q.id }}'); d.style.display=(d.style.display==='none'?'block':'none')">
-                <h3>{{ q.title }}</h3>
-                <span style="font-weight:900; font-size: 0.8rem;">DATA_LOG >></span>
-            </div>
-            <div id="{{ q.id }}" class="intel-box">
-                <p style="color:var(--cyan); font-weight:900;">// ANALYSIS RESULT:</p>
-                <ul style="padding-left:15px; margin: 0;">{% for d in q.dossier %}<li>{{ d }}</li>{% endfor %}</ul>
-                <div style="background: rgba(255,255,255,0.1); padding: 10px; margin-top: 15px; border-left: 4px solid var(--white);">
-                    <p style="margin:0; font-weight:900; color: var(--cyan);">ACQUIRED ACHIEVEMENT:</p>
-                    {% for a in q.achievements %}<span style="font-size:0.8rem; margin-right: 10px;">★ {{ a }}</span>{% endfor %}
+            <div class="command-bar" onmouseover="document.getElementById('intel-{{q.id}}').style.display='block'" onmouseout="document.getElementById('intel-{{q.id}}').style.display='none'">
+                <div style="display:flex; justify-content:space-between; align-items:center;">
+                    <h3>{{ q.title }}</h3>
+                    <span style="font-size:0.8rem;">ACCESSING_DATA...</span>
+                </div>
+                <!-- POPUP INTEL -->
+                <div id="intel-{{q.id}}" class="intel-overlay">
+                    <p style="color:var(--p3-blue); font-weight:900;">// MISSION INTEL //</p>
+                    <p style="font-size:1.5rem; font-family:'Permanent Marker';">{{ q.impact }}</p>
+                    <ul style="font-size:0.9rem; padding-left:15px;">
+                        {% for d in q.dossier %}<li>{{ d }}</li>{% endfor %}
+                    </ul>
                 </div>
             </div>
             {% endfor %}
+        </div>
 
-            <button class="btn-p3r" onclick="document.getElementById('modal').style.display='flex'">INITIATE CONTACT</button>
+        <!-- RIGHT: INVENTORY -->
+        <div class="inventory-hud">
+            <p style="color:var(--p3-blue); font-weight:900; margin-bottom:20px;">INVENTORY</p>
+            {% for item in stats.inventory %}
+            <div class="inv-item">{{ item }}</div>
+            {% endfor %}
         </div>
     </div>
 
-    <!-- MODAL -->
-    <div id="modal" class="modal" onclick="this.style.display='none'">
-        <div class="terminal" onclick="event.stopPropagation()">
-            <div style="background: var(--cyan); color: #000; padding: 5px 10px; font-weight: 900; margin-bottom: 20px;">SYSTEM CALL</div>
-            <h2>CONTACT INFO</h2>
-            <p>NAME: ALIF OCTRIO</p>
-            <p>MAIL: {{ stats.contact.email }}</p>
-            <p>TEL: {{ stats.contact.phone }}</p>
-            <button onclick="document.getElementById('modal').style.display='none'" style="background:none; border: 2px solid var(--cyan); color: var(--cyan); padding: 10px 20px; cursor: pointer; margin-top: 20px; font-family: 'Archivo Black';">BACK</button>
+    <button class="showtime-btn" onclick="document.getElementById('contact').style.display='flex'">SHOWTIME!</button>
+
+    <!-- CONTACT MODAL -->
+    <div id="contact" class="modal" onclick="this.style.display='none'">
+        <div class="calling-card" onclick="event.stopPropagation()">
+            <h2 style="font-family:'Permanent Marker'; font-size:3rem; margin:0;">INITIATE CO-OP</h2>
+            <hr style="border: 2px solid #000;">
+            <p style="font-size:1.5rem; font-weight:900;">MAIL: {{ stats.contact.email }}</p>
+            <p style="font-size:1.5rem; font-weight:900;">TEL: {{ stats.contact.phone }}</p>
+            <p style="font-style:italic;">"The arcana is the means by which all is revealed..."</p>
+            <button onclick="document.getElementById('contact').style.display='none'" style="background:#000; color:#fff; border:none; padding:15px 30px; font-family:'Permanent Marker'; cursor:pointer; margin-top:20px;">RETURN</button>
         </div>
     </div>
 </body>
