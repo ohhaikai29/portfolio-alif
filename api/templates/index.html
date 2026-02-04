@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alif Octrio | Persona Profile</title>
+    <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Oswald:wght@700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        :root { --red: #D32F2F; --black: #000000; --white: #FFFFFF; }
+        body { background: var(--black); color: var(--white); font-family: 'Oswald', sans-serif; margin: 0; overflow-x: hidden; }
+        
+        /* Persona Slanted Background */
+        .bg-stripe {
+            position: fixed; top: 0; left: -10%; width: 120%; height: 120%;
+            background: repeating-linear-gradient(45deg, #111, #111 10px, #000 10px, #000 20px);
+            z-index: -1; transform: rotate(-5deg);
+        }
+
+        /* Name Header */
+        .header-box {
+            background: var(--red); color: white; padding: 20px 80px;
+            transform: rotate(-3deg) translateX(-30px);
+            border: 6px solid white; margin-top: 40px; display: inline-block;
+            box-shadow: 10px 10px 0px var(--black);
+        }
+        h1 { font-family: 'Permanent Marker', cursive; font-size: 4rem; margin: 0; text-transform: uppercase; }
+
+        .main-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; padding: 50px; }
+
+        /* Left Side: Character Card */
+        .char-card {
+            background: var(--white); color: var(--black); padding: 30px;
+            border: 8px solid var(--red); transform: rotate(2deg);
+            box-shadow: 15px 15px 0px var(--red);
+        }
+        .lvl-badge { background: var(--black); color: white; padding: 5px 20px; font-size: 2rem; display: inline-block; transform: skew(-10deg); }
+        .stat-line { font-size: 1.5rem; border-bottom: 2px solid #ccc; margin: 10px 0; display: flex; justify-content: space-between; }
+
+        /* Right Side: Quest Log */
+        .quest-box { background: rgba(0,0,0,0.8); border: 2px solid var(--red); padding: 20px; transform: skew(-3deg); }
+        .quest-item {
+            border-left: 8px solid var(--red); background: #1a1a1a;
+            padding: 15px; margin-bottom: 15px; transition: 0.3s;
+        }
+        .quest-item:hover { background: var(--red); transform: scale(1.05); }
+
+        .radar-box { background: rgba(255,255,255,0.05); padding: 20px; border: 2px solid white; }
+
+        .btn-showtime {
+            background: var(--red); color: white; padding: 20px 40px;
+            font-family: 'Permanent Marker'; font-size: 2rem;
+            border: 5px solid white; text-decoration: none;
+            display: inline-block; margin-top: 30px; transform: rotate(-2deg);
+            transition: 0.2s;
+        }
+        .btn-showtime:hover { background: white; color: var(--red); transform: scale(1.1) rotate(0deg); }
+
+        @media (max-width: 768px) { .main-grid { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+    <div class="bg-stripe"></div>
+
+    <div class="header-box">
+        <h1>ALIF OCTRIO</h1>
+    </div>
+
+    <div class="main-grid">
+        <!-- STATUS PANEL -->
+        <div>
+            <div class="char-card">
+                <div class="lvl-badge">LVL 0{{ stats.level }}</div>
+                <h2 style="margin-top:10px;">CLASS: AI OPERATIONS & PM</h2>
+                <div class="stat-line"><span>HP</span> <span>{{ stats.hp }}/{{ stats.hp }}</span></div>
+                <div class="stat-line"><span>SP</span> <span>{{ stats.sp }}/{{ stats.sp }}</span></div>
+                <p><strong>PERSONA:</strong> {{ stats.persona_name }}</p>
+                <p><strong>PASSIVE:</strong> {{ stats.philosophy_perk }}</p>
+                <div style="background:#eee; height:10px; width:100%;"><div style="background:var(--red); height:100%; width:{{stats.exp_percent}}%;"></div></div>
+                <p style="font-size:0.8rem;">NEXT LVL: 65% EXP REQUIRED</p>
+            </div>
+
+            <div class="radar-box" style="margin-top:30px;">
+                <canvas id="skillsChart"></canvas>
+            </div>
+        </div>
+
+        <!-- QUEST LOG PANEL -->
+        <div>
+            <h2 style="font-family:'Permanent Marker'; color:var(--red); font-size:2.5rem;">[ COMPLETED QUESTS ]</h2>
+            <div class="quest-box">
+                <div class="quest-item">
+                    <h3>OP: EKLIPSE MASTERY</h3>
+                    <p>Optimized AI Accuracy 60% → 90% | Led Market Strategy.</p>
+                </div>
+                <div class="quest-item">
+                    <h3>OP: DATA FOUNDATION</h3>
+                    <p>PT Maingames | Stability +20% | Reduced Training Noise.</p>
+                </div>
+                <div class="quest-item">
+                    <h3>OP: PHILOSOPHY AWAKENING</h3>
+                    <p>UGM Graduate | Logic, Ethics, & Epistemology Unlocked.</p>
+                </div>
+            </div>
+            
+            <a href="mailto:alifoctrio@gmail.com" class="btn-showtime">IT'S SHOWTIME!</a>
+        </div>
+    </div>
+
+    <script>
+        const ctx = document.getElementById('skillsChart');
+        new Chart(ctx, {
+            type: 'radar',
+            data: {
+                labels: ['Knowledge', 'Guts', 'Proficiency', 'Kindness', 'Charm'],
+                datasets: [{
+                    label: 'Social Stats',
+                    data: {{ stats.social_stats|tojson }},
+                    backgroundColor: 'rgba(211, 47, 47, 0.7)',
+                    borderColor: '#FFFFFF',
+                    borderWidth: 4,
+                    pointBackgroundColor: '#FFFFFF'
+                }]
+            },
+            options: {
+                scales: {
+                    r: {
+                        angleLines: { color: 'white' },
+                        grid: { color: 'white' },
+                        pointLabels: { color: 'white', font: { size: 16, family: 'Oswald' } },
+                        ticks: { display: false },
+                        min: 0, max: 5
+                    }
+                },
+                plugins: { legend: { display: false } }
+            }
+        });
+    </script>
+</body>
+</html>
