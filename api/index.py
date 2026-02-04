@@ -8,76 +8,76 @@ def home():
     try:
         stats = {
             "level": "03",
-            "rank": "STRATEGIC AI OPERATIONS & PM LEAD",
+            "rank": "STRATEGIC PRODUCT & AI LEAD",
             "exp_years": "Aug 2022 - Sept 2025",
-            "kpi": "90%", 
-            "opt": "85%",
-            "persona_name": "LOGOS",
-            "passive": "Epistemic Insight: Applying ethics, logic, and philosophy of science to data-driven leadership.",
+            "performance": "90%", 
+            "strategy": "85%",
+            "persona": "LOGOS",
+            "passive": "Epistemic Sovereignty: Integrating ethics and logic into high-stakes decision making.",
             "social_stats": [5, 5, 5, 4, 5], 
             "contact": {
                 "email": "alifoctrio@gmail.com",
                 "phone": "+62 813-3670-0117",
                 "linkedin": "linkedin.com/in/alifoctrio"
             },
-            "inventory": ["Reverse Engineering", "Benchmark Analysis", "Market Strategy", "Web Scraping", "Technical PM"],
-            "tech_stack": ["Jira", "Asana", "Trello", "Advanced Excel", "Prompt Engineering"],
+            "inventory": ["Competitor Benchmarking", "Product Roadmap", "Stakeholder Alignment", "Web Scraping", "Market Intelligence"],
+            "tech_stack": ["Jira", "Asana", "Advanced Excel", "Prompt Engineering"],
             "quests": [
                 {
-                    "id": "eklipse_lead",
-                    "title": "OP: AI LEADERSHIP AWAKENING",
+                    "id": "mission_ai_lead",
+                    "title": "MISSION: AI PERFORMANCE ASCENSION",
                     "company": "Eklipse.gg",
                     "role": "Lead AI and Data Optimization",
-                    "achievement": "AI SUCCESS RATE 60% → 90%",
-                    "how": "Directed end-to-end AI operations and identified gaps by reverse-engineering competitor outputs.",
-                    "loot": ["Competitor Performance Data", "Signature: Benchmark Analysis", "Optimized Model Framework"],
-                    "details": [
-                        "Identified AI performance gaps by REVERSE-ENGINEERING competitor outputs.",
-                        "Led multi-day technical benchmarking to influence feature prioritization.",
-                        "Built monitoring frameworks to align AI results with business stakeholders.",
-                        "Reduced AI iteration cycles through systematic benchmark analysis."
+                    "impact": "SUCCESS RATE 60% → 90%",
+                    "summary": "Architected end-to-end AI operations and optimized iteration cycles through systematic benchmarking.",
+                    "assets": ["Competitor Intel Data", "Signature: Reverse-Engineering Strategy", "Benchmark Framework"],
+                    "dossier": [
+                        "Identified AI performance gaps by reverse-engineering competitor outputs.",
+                        "Directed multi-day technical benchmarking to influence strategic feature prioritization.",
+                        "Established monitoring frameworks to align AI precision with business objectives.",
+                        "Drastically reduced AI iteration cycles via systematic analytical audits."
                     ]
                 },
                 {
-                    "id": "eklipse_pm",
-                    "title": "OP: MARKET STRATEGY DOMINATION",
+                    "id": "mission_pm",
+                    "title": "MISSION: PRODUCT MARKET DOMINATION",
                     "company": "Eklipse.gg",
                     "role": "Project Manager & Market Strategy",
-                    "achievement": "400+ Daily Submissions Pipeline",
-                    "how": "Translated AI capabilities and market signals into actionable product decisions.",
-                    "loot": ["Sentiment Analysis Framework", "NRU Tracking System", "Product-Market Fit Data"],
-                    "details": [
-                        "Conducted market intelligence via web scraping and community insights.",
-                        "Designed user sentiment analysis frameworks for marketing pivot decisions.",
-                        "Developed NRU tracking systems to evaluate campaign effectiveness.",
-                        "Strategic bridge between Product, Marketing, and AI teams."
+                    "impact": "SCALED TO 400+ DAILY SUBS",
+                    "summary": "Synchronized AI capabilities with market signals to drive actionable product roadmaps.",
+                    "assets": ["Sentiment Analysis Engine", "NRU Tracking Infrastructure", "GTM Strategic Data"],
+                    "dossier": [
+                        "Orchestrated market intelligence gathering via advanced web scraping techniques.",
+                        "Engineered user sentiment analysis frameworks to guide marketing pivot decisions.",
+                        "Bridged the execution gap between Product, Marketing, and AI engineering teams.",
+                        "Developed internal KPI systems to evaluate real-time campaign effectiveness."
                     ]
                 },
                 {
-                    "id": "maingames_ops",
-                    "title": "OP: DATA FOUNDATION QUEST",
+                    "id": "mission_foundation",
+                    "title": "MISSION: DATA INTEGRITY FOUNDATION",
                     "company": "PT. MAINGAMES",
                     "role": "AI and Data Optimization Staff",
-                    "achievement": "System Stability +20%",
-                    "how": "Enhanced training dataset quality and large-scale data quality assurance.",
-                    "loot": ["Bounding Box Precision Mastery", "Production-Grade Data Reliability", "User Feedback Loop"],
-                    "details": [
-                        "Improved AI system stability through dataset quality enhancement.",
-                        "Performed labeling validation, bounding box correction, and dataset audits.",
-                        "Integrated App Store reviews and social media into data cycles.",
-                        "Maintained production-grade data reliability for long-term scalability."
+                    "impact": "SYSTEM STABILITY +20%",
+                    "summary": "Fortified AI scalability through rigorous data QA and dataset improvement cycles.",
+                    "assets": ["Production-Grade Data Reliability", "Bounding Box Precision Mastery"],
+                    "dossier": [
+                        "Enhanced AI system stability by optimizing training dataset quality.",
+                        "Managed labeling validation and dataset audits to minimize training noise.",
+                        "Synthesized App Store feedback into continuous data improvement loops.",
+                        "Maintained high-grade data reliability to support long-term AI scalability."
                     ]
                 }
             ],
             "education": {
-                "title": "SIDE QUEST: HIGHER EDUCATION",
+                "title": "ACADEMIC SIDE-QUEST",
                 "school": "Universitas Gadjah Mada",
                 "major": "Philosophy | GPA: 3.06",
-                "desc": "Applied ethics, logic, and epistemology to data management and leadership."
+                "desc": "Mastered the application of logic and epistemology in leadership and data management."
             }
         }
         return render_template('index.html', stats=stats)
     except Exception as e:
-        return f"Error: {str(e)}"
+        return f"System Error: {str(e)}"
 
 app.debug = True
