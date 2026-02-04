@@ -6,69 +6,71 @@ app = Flask(__name__)
 def home():
     stats = {
         "level": "03",
-        "rank": "SENIOR AI OPERATIONS LEAD",
-        "exp_years": "Aug 2022 - Present",
+        "rank": "STRATEGIC AI OPERATIONS LEAD",
+        "exp_years": "2022 - Present",
         "kpi": "90%", 
         "opt": "85%",
         "persona_name": "LOGOS",
-        "philosophy_perk": "Logic, Ethics, & Epistemology in Decision Making",
-        "social_stats": [5, 5, 4, 4, 5], # PM, AI Ops, Analysis, Stakeholder, Strategy
+        "lore": "Strategic Project Manager and AI Operations Specialist with proven experience driving AI product execution and data-driven decision making in gaming platforms.",
+        "social_stats": [5, 5, 4, 4, 5], 
         "contact": {
             "email": "alifoctrio@gmail.com",
             "phone": "+62 813-3670-0117",
             "linkedin": "linkedin.com/in/alifoctrio"
         },
         "inventory": [
-            "Jira", "Asana", "Trello", "Advanced Excel", "Web Scraping", "Prompt Engineering"
+            "Project Management", "Business Analysis", "Roadmap Planning", 
+            "Stakeholder Management", "Go-to-Market Support", "Web Scraping"
         ],
+        "tech_stack": ["Jira", "Asana", "Trello", "Advanced Excel", "Prompt Engineering"],
         "quests": [
             {
                 "id": "eklipse_pm",
                 "title": "OP: HYPE GAMES STRATEGY",
+                "company": "Eklipse.gg",
                 "role": "Project Manager & Market Strategy",
-                "achievement": "Market Intelligence & Product-Market Fit",
-                "how": "Translating AI capabilities, market signals, and user insights into actionable product decisions.",
-                "loot": ["User Sentiment Framework", "KPI Tracking System (NRU & 400+ Submissions)", "Market Intelligence Data"],
+                "achievement": "High-Potential Product Identification",
+                "loot": ["User Sentiment Analysis Framework", "KPI Tracking (NRU & 400+ daily)", "Strategic Marketing Pivots"],
                 "details": [
-                    "Conducted market intelligence through web scraping and community insights.",
-                    "Designed and implemented user sentiment analysis frameworks for marketing pivots.",
-                    "Developed internal KPI tracking systems for 400+ daily submissions.",
-                    "Acted as a strategic bridge between Product, Marketing, and AI teams."
+                    "Translating AI capabilities into actionable product decisions.",
+                    "Market intelligence & competitor analysis via web scraping.",
+                    "Bridging Product, Marketing, and AI teams for execution alignment.",
+                    "Evaluating product-market fit through campaign effectiveness data."
                 ]
             },
             {
                 "id": "eklipse_ai",
-                "title": "OP: AI OPTIMIZATION LEAD",
+                "title": "OP: AI BENCHMARKING LEAD",
+                "company": "Eklipse.gg",
                 "role": "Lead AI and Data Optimization",
-                "achievement": "AI Success Rate: 60% → 90%",
-                "how": "Reverse-engineering competitor outputs and multi-day technical benchmarking to influence feature prioritization.",
-                "loot": ["AI Performance Monitoring Framework", "Systematic Benchmark Analysis", "Optimized Iteration Cycles"],
+                "achievement": "Success Rate 60% → 90%",
+                "loot": ["Multi-day AI Technical Benchmarking", "Reverse-Engineering Intel", "Iterative Cycle Reduction"],
                 "details": [
-                    "Led end-to-end AI operations and multi-day technical benchmarking.",
-                    "Identified gaps by reverse-engineering competitor outputs.",
-                    "Built monitoring frameworks to align AI results with business stakeholders.",
-                    "Reduced AI iteration cycles through systematic benchmark analysis."
+                    "Led end-to-end AI operations and performance analysis.",
+                    "Reverse-engineered competitor outputs to influence feature prioritization.",
+                    "Built reporting frameworks for Business & Product stakeholders.",
+                    "Systematic benchmark analysis to reduce iteration cycles."
                 ]
             },
             {
                 "id": "maingames",
-                "title": "OP: DATA SCALABILITY",
+                "title": "OP: DATA RELIABILITY",
+                "company": "PT. MAINGAMES",
                 "role": "AI and Data Optimization Staff",
-                "achievement": "System Stability Boost: +20%",
-                "how": "Training dataset quality enhancement and large-scale data QA.",
-                "loot": ["Clean Training Datasets", "Bounding Box Precision", "User Feedback Loop"],
+                "achievement": "System Stability +20%",
+                "loot": ["Production-Grade Data Scalability", "Dataset Quality Assurance", "User Feedback Integration"],
                 "details": [
-                    "Supported AI performance through high-quality data preparation.",
-                    "Performed labeling validation, bounding box correction, and dataset audits.",
-                    "Integrated App Store reviews and social media feedback into data cycles.",
-                    "Maintained production-grade data reliability for long-term scalability."
+                    "High-quality data preparation for AI scalability.",
+                    "Labeling validation, bounding box correction, and dataset audits.",
+                    "Monitored Facebook Gaming creator content performance.",
+                    "Continuous data improvement via App Store & Social Media feedback."
                 ]
             }
         ],
         "education": {
             "school": "Universitas Gadjah Mada",
             "major": "Philosophy | GPA: 3.06",
-            "focus": "Ethics, Logic, & Philosophy of Science in Data Management."
+            "focus": "Applied ethics, logic, and philosophy of science in decision-making."
         }
     }
     return render_template('index.html', stats=stats)
