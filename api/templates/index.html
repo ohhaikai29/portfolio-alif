@@ -3,171 +3,182 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ALIF OCTRIO | HUD</title>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;900&family=Permanent+Marker&family=Exo+2:ital,wght@1,900&display=swap" rel="stylesheet">
+    <title>ALIF OCTRIO | P3R HUD</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@900&family=Permanent+Marker&family=Montserrat:ital,wght@0,400;1,900&display=swap" rel="stylesheet">
     <style>
-        :root { --p3-blue: #00CCFF; --deep-navy: #000B18; --glow: #00F0FF; --white: #FFFFFF; }
+        :root { --blue: #00CCFF; --navy: #000B18; --cyan: #00F0FF; --white: #FFFFFF; }
         
-        * { box-sizing: border-box; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+        * { box-sizing: border-box; transition: all 0.3s ease; }
         body { 
-            background: var(--deep-navy); color: var(--white); 
-            font-family: 'Orbitron', sans-serif; margin: 0; overflow: hidden;
-            height: 100vh; width: 100vw;
+            background: var(--navy); color: var(--white); 
+            font-family: 'Montserrat', sans-serif; margin: 0; overflow-x: hidden;
         }
 
-        /* DYNAMIC P3R BACKGROUND */
-        .bg-canvas {
-            position: fixed; top:0; left:0; width:100%; height:100%; z-index:-1;
-            background: radial-gradient(circle at center, #002b4d 0%, #000810 100%);
+        /* BACKGROUND */
+        .bg {
+            position: fixed; inset: 0; z-index: -1;
+            background: radial-gradient(circle at 30% 30%, #001a33 0%, #000 100%);
         }
-        .bubbles {
-            position: absolute; top:0; left:0; width:100%; height:100%;
-            background: url('https://www.transparenttextures.com/patterns/carbon-fibre.png');
-            opacity: 0.1;
-        }
-
-        /* HUD LAYOUT */
-        .hud-container {
-            display: grid; grid-template-columns: 450px 1fr 300px;
-            height: 100vh; padding: 40px; gap: 20px;
+        .grid-bg {
+            position: absolute; inset: 0;
+            background-image: linear-gradient(rgba(0,204,255,0.05) 1px, transparent 1px), 
+                              linear-gradient(90deg, rgba(0,204,255,0.05) 1px, transparent 1px);
+            background-size: 50px 50px;
         }
 
-        /* LEFT HUD: PROFILE & STATS */
-        .profile-section { display: flex; flex-direction: column; gap: 20px; }
-        
-        .portrait-frame {
-            width: 100%; height: 400px; background: rgba(0, 204, 255, 0.1);
-            border: 4px solid var(--p3-blue); clip-path: polygon(10% 0%, 100% 0%, 90% 100%, 0% 100%);
-            box-shadow: 0 0 50px rgba(0, 204, 255, 0.3); overflow: hidden; position: relative;
+        /* HEADER */
+        .header {
+            padding: 30px 50px; border-bottom: 5px solid var(--blue);
+            background: rgba(0,0,0,0.8); display: flex; justify-content: space-between; align-items: center;
         }
-        .portrait-frame img { 
-            width: 110%; height: 110%; object-fit: cover; filter: brightness(1.2) cyanosis;
-            transform: rotate(2deg) scale(1.1);
-        }
+        h1 { font-family: 'Permanent Marker', cursive; font-size: 3.5rem; margin: 0; color: var(--white); text-shadow: 4px 4px 0 var(--blue); }
 
-        .stat-card {
-            background: rgba(255, 255, 255, 0.9); color: var(--deep-navy);
-            padding: 20px; transform: skew(-10deg); border-left: 15px solid var(--p3-blue);
-        }
-        .lvl-text { font-family: 'Exo 2'; font-size: 3rem; font-style: italic; line-height: 1; }
+        .container { display: grid; grid-template-columns: 350px 1fr 250px; gap: 30px; padding: 30px 50px; }
 
-        /* CENTER HUD: COMBAT MENU (MISSION LOG) */
-        .mission-menu { display: flex; flex-direction: column; justify-content: center; gap: 15px; }
-        
-        .command-bar {
-            background: rgba(0, 204, 255, 0.15); border: 2px solid var(--p3-blue);
-            padding: 20px 40px; width: 100%; cursor: pointer; position: relative;
+        /* LEFT SIDEBAR */
+        .portrait {
+            width: 100%; height: 300px; border: 4px solid var(--blue);
+            clip-path: polygon(0 0, 100% 0, 100% 85%, 85% 100%, 0 100%);
+            box-shadow: 0 0 20px var(--blue); overflow: hidden; margin-bottom: 20px;
+        }
+        .portrait img { width: 100%; height: 100%; object-fit: cover; filter: brightness(1.1) contrast(1.1); }
+
+        .status-card {
+            background: rgba(255,255,255,0.9); color: var(--navy);
+            padding: 15px; border-left: 10px solid var(--blue); transform: skew(-5deg);
+        }
+        .lvl { font-family: 'Orbitron'; font-size: 2.5rem; font-weight: 900; }
+
+        /* CENTER: MISSION LOG (FIXED CLICKABLE) */
+        .mission-log { display: flex; flex-direction: column; gap: 15px; }
+        .mission-bar {
+            background: rgba(0, 204, 255, 0.1); border: 2px solid var(--blue);
+            padding: 15px 30px; cursor: pointer; position: relative;
             clip-path: polygon(0 0, 95% 0, 100% 100%, 5% 100%);
         }
-        .command-bar:hover {
-            background: var(--p3-blue); color: var(--deep-navy);
-            transform: scale(1.05) translateX(30px); box-shadow: 0 0 30px var(--glow);
-        }
-        .command-bar h3 { font-family: 'Permanent Marker', cursive; margin: 0; font-size: 1.8rem; }
-        
-        .intel-overlay {
-            display: none; position: fixed; top: 20%; right: 50px; width: 400px;
-            background: rgba(0, 11, 24, 0.95); border: 3px solid var(--p3-blue);
-            padding: 30px; z-index: 100; box-shadow: 0 0 100px rgba(0, 204, 255, 0.5);
-        }
+        .mission-bar:hover { background: var(--blue); color: var(--navy); transform: translateX(10px); }
+        .mission-bar h3 { font-family: 'Orbitron'; margin: 0; font-size: 1.2rem; }
 
-        /* RIGHT HUD: INVENTORY */
-        .inventory-hud { text-align: right; display: flex; flex-direction: column; gap: 10px; }
-        .inv-item { 
-            background: rgba(255,255,255,0.1); padding: 10px; border-right: 5px solid var(--glow);
-            font-size: 0.8rem; letter-spacing: 2px;
+        .intel-box {
+            display: none; background: rgba(0, 11, 24, 0.95);
+            border: 2px solid var(--cyan); padding: 20px; margin-top: -5px;
+            animation: slideDown 0.3s forwards;
         }
+        @keyframes slideDown { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* RIGHT: INVENTORY */
+        .inventory-list { text-align: right; border-right: 4px solid var(--blue); padding-right: 15px; }
+        .inv-tag { font-size: 0.9rem; margin-bottom: 10px; display: block; color: var(--blue); font-weight: 900; }
 
         /* SHOWTIME BUTTON */
         .showtime-btn {
-            position: fixed; bottom: 50px; right: 60px;
-            background: var(--p3-blue); color: white; border: 4px solid white;
-            padding: 20px 60px; font-family: 'Permanent Marker'; font-size: 2.5rem;
-            transform: rotate(-3deg); cursor: pointer; box-shadow: 10px 10px 0 #000;
+            position: fixed; bottom: 40px; right: 50px;
+            background: var(--blue); color: white; border: 4px solid white;
+            padding: 15px 40px; font-family: 'Permanent Marker'; font-size: 2rem;
+            transform: rotate(-3deg); cursor: pointer; box-shadow: 8px 8px 0 #000;
         }
-        .showtime-btn:hover { background: var(--glow); transform: rotate(0) scale(1.1); }
+        .showtime-btn:hover { background: var(--cyan); transform: rotate(0) scale(1.1); }
 
-        /* CONTACT MODAL */
+        /* MODAL */
         .modal {
-            display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.9);
-            z-index: 1000; justify-content: center; align-items: center;
+            display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.95);
+            z-index: 999; justify-content: center; align-items: center;
         }
         .calling-card {
-            background: #fff; color: #000; padding: 50px; border: 10px solid var(--p3-blue);
-            transform: rotate(2deg); width: 600px; position: relative;
+            background: #fff; color: #000; padding: 40px; border: 8px solid var(--blue);
+            transform: rotate(2deg); width: 500px; text-align: center;
         }
     </style>
 </head>
 <body>
-    <div class="bg-canvas"><div class="bubbles"></div></div>
+    <div class="bg"><div class="grid-bg"></div></div>
 
-    <div class="hud-container">
-        <!-- LEFT: PROFILE -->
-        <div class="profile-section">
-            <div class="portrait-frame">
+    <header class="header">
+        <h1>ALIF OCTRIO</h1>
+        <div style="text-align: right;">
+            <p style="margin:0; font-weight:900; color: var(--blue);">DATABASE ACCESS</p>
+            <p style="margin:0; font-size: 0.7rem;">S.E.E.S. ARCHITECT // READY</p>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- SIDEBAR -->
+        <div class="sidebar">
+            <div class="portrait">
                 <img src="/static/alif.jpg" onerror="this.src='https://via.placeholder.com/400x600/001A33/00F0FF?text=ALIF+OCTRIO'">
             </div>
-            <div class="stat-card">
-                <div class="lvl-text">LVL {{ stats.level }}</div>
-                <div style="font-weight:900; letter-spacing:3px;">{{ stats.rank }}</div>
-                <div style="margin-top:10px; height:4px; background:black; position:relative;">
-                    <div style="position:absolute; left:0; top:0; height:100%; width:90%; background:var(--p3-blue);"></div>
-                </div>
-                <p style="font-size:0.7rem; margin:5px 0;">HP: 999/999 | SP: 850/850</p>
+            <div class="status-card">
+                <div class="lvl">LVL {{ stats.level }}</div>
+                <div style="font-weight:900; font-size:0.8rem;">{{ stats.rank }}</div>
+                <hr style="border-color:black;">
+                <div style="display:flex; justify-content:space-between;"><span>ACCURACY</span> <b>{{ stats.accuracy }}</b></div>
+                <div style="display:flex; justify-content:space-between;"><span>EFFICIENCY</span> <b>{{ stats.efficiency }}</b></div>
             </div>
-            <div style="background:rgba(255,255,255,0.05); padding:15px; border-left: 4px solid var(--glow);">
-                <p style="margin:0 0 10px 0; font-size:0.7rem; color:var(--glow);">SKILL MASTERY</p>
+            <div style="margin-top:20px;">
+                <p style="color:var(--blue); font-size:0.7rem; font-weight:900;">SKILL TREE</p>
                 {% for s in stats.skills %}
-                <div style="font-size:0.8rem; margin-bottom:5px;">
+                <div style="font-size:0.8rem; margin-bottom:8px;">
                     {{ s.n }} <span style="float:right;">{{ s.v }}%</span>
-                    <div style="height:2px; background:rgba(255,255,255,0.1);"><div style="width:{{s.v}}%; height:100%; background:white;"></div></div>
+                    <div style="height:3px; background:rgba(255,255,255,0.1);"><div style="width:{{s.v}}%; height:100%; background:var(--blue);"></div></div>
                 </div>
                 {% endfor %}
             </div>
         </div>
 
-        <!-- CENTER: MISSION COMMANDS -->
-        <div class="mission-menu">
-            <h2 style="font-family:'Permanent Marker'; color:var(--glow); font-size:3rem; margin-bottom:30px;">[ MISSION_LOG ]</h2>
+        <!-- MISSIONS (FIXED CLICK SYSTEM) -->
+        <div class="mission-log">
+            <h2 style="font-family:'Orbitron'; color:var(--blue); margin-bottom:20px;">[ MISSION_RECORD ]</h2>
+            
             {% for q in stats.quests %}
-            <div class="command-bar" onmouseover="document.getElementById('intel-{{q.id}}').style.display='block'" onmouseout="document.getElementById('intel-{{q.id}}').style.display='none'">
+            <div class="mission-bar" onclick="toggleIntel('{{ q.id }}')">
                 <div style="display:flex; justify-content:space-between; align-items:center;">
                     <h3>{{ q.title }}</h3>
-                    <span style="font-size:0.8rem;">ACCESSING_DATA...</span>
+                    <span style="font-size:0.7rem;">DECRYPTING >></span>
                 </div>
-                <!-- POPUP INTEL -->
-                <div id="intel-{{q.id}}" class="intel-overlay">
-                    <p style="color:var(--p3-blue); font-weight:900;">// MISSION INTEL //</p>
-                    <p style="font-size:1.5rem; font-family:'Permanent Marker';">{{ q.impact }}</p>
-                    <ul style="font-size:0.9rem; padding-left:15px;">
-                        {% for d in q.dossier %}<li>{{ d }}</li>{% endfor %}
-                    </ul>
+            </div>
+            <div id="{{ q.id }}" class="intel-box">
+                <p style="color:var(--cyan); font-weight:900; margin-top:0;">// MISSION ANALYSIS //</p>
+                <p style="font-size:1.4rem; font-family:'Permanent Marker'; color:var(--white);">{{ q.impact }}</p>
+                <p style="font-size:0.9rem;">{{ q.intel }}</p>
+                <div style="background:rgba(255,255,255,0.1); padding:10px; border-left:4px solid var(--white);">
+                    <p style="margin:0; font-size:0.7rem; font-weight:900; color:var(--cyan);">LOOT ACQUIRED:</p>
+                    {% for l in q.loot %}<span style="font-size:0.8rem; margin-right:15px;">★ {{ l }}</span>{% endfor %}
                 </div>
             </div>
             {% endfor %}
         </div>
 
-        <!-- RIGHT: INVENTORY -->
-        <div class="inventory-hud">
-            <p style="color:var(--p3-blue); font-weight:900; margin-bottom:20px;">INVENTORY</p>
+        <!-- INVENTORY -->
+        <div class="inventory-list">
+            <p style="color:var(--blue); font-weight:900; margin-bottom:15px;">INVENTORY</p>
             {% for item in stats.inventory %}
-            <div class="inv-item">{{ item }}</div>
+            <span class="inv-tag">{{ item }}</span>
             {% endfor %}
         </div>
     </div>
 
-    <button class="showtime-btn" onclick="document.getElementById('contact').style.display='flex'">SHOWTIME!</button>
+    <button class="showtime-btn" onclick="document.getElementById('modal').style.display='flex'">SHOWTIME!</button>
 
-    <!-- CONTACT MODAL -->
-    <div id="contact" class="modal" onclick="this.style.display='none'">
+    <div id="modal" class="modal" onclick="this.style.display='none'">
         <div class="calling-card" onclick="event.stopPropagation()">
-            <h2 style="font-family:'Permanent Marker'; font-size:3rem; margin:0;">INITIATE CO-OP</h2>
-            <hr style="border: 2px solid #000;">
-            <p style="font-size:1.5rem; font-weight:900;">MAIL: {{ stats.contact.email }}</p>
-            <p style="font-size:1.5rem; font-weight:900;">TEL: {{ stats.contact.phone }}</p>
-            <p style="font-style:italic;">"The arcana is the means by which all is revealed..."</p>
-            <button onclick="document.getElementById('contact').style.display='none'" style="background:#000; color:#fff; border:none; padding:15px 30px; font-family:'Permanent Marker'; cursor:pointer; margin-top:20px;">RETURN</button>
+            <h2 style="font-family:'Permanent Marker'; font-size:2.5rem; margin:0;">INITIATE CO-OP</h2>
+            <hr>
+            <p style="font-weight:900;">MAIL: {{ stats.contact.email }}</p>
+            <p style="font-weight:900;">TEL: {{ stats.contact.phone }}</p>
+            <button onclick="document.getElementById('modal').style.display='none'" style="background:#000; color:#fff; border:none; padding:10px 20px; font-family:'Permanent Marker'; cursor:pointer; margin-top:15px;">RETURN</button>
         </div>
     </div>
+
+    <script>
+        function toggleIntel(id) {
+            // Tutup semua intel box dulu biar rapi
+            document.querySelectorAll('.intel-box').forEach(box => {
+                if(box.id !== id) box.style.display = 'none';
+            });
+            // Toggle yang diklik
+            const target = document.getElementById(id);
+            target.style.display = target.style.display === 'block' ? 'none' : 'block';
+        }
+    </script>
 </body>
 </html>
