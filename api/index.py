@@ -7,82 +7,75 @@ def home():
     stats = {
         "level": "03",
         "rank": "STRATEGIC PRODUCT & AI ARCHITECT",
-        "exp_years": "May 2023 - Sept 2025",
-        "accuracy_buff": "90%", 
-        "team_boost": "80%",
+        "exp_years": "Aug 2022 - Sept 2025",
+        "accuracy": "90%", 
+        "efficiency": "80%",
         "persona": "LOGOS",
-        "passive": "Epistemic Sovereign: Translating raw market signals into high-value strategic roadmaps.",
-        "social_stats": [5, 5, 5, 5, 4], 
+        "passive": "Epistemic Sovereign: Translating raw market signals into strategic roadmaps.",
         "contact": {
             "email": "alifoctrio@gmail.com",
             "phone": "+62 813-3670-0117",
             "linkedin": "linkedin.com/in/alifoctrio"
         },
-        "inventory": ["Competitor Reverse-Engineering", "Technical Benchmarking", "Product Strategy", "Sentiment Frameworks", "GTM Support"],
+        "inventory": ["Competitor Reverse-Engineering", "Technical Benchmarking", "Product Strategy", "Sentiment Frameworks"],
         "quests": [
             {
-                "id": "mission_benchmark",
-                "title": "MISSION: AI TECHNICAL BENCHMARK & COMPETITIVE ANALYSIS",
+                "id": "q1",
+                "title": "MISSION: AI TECHNICAL BENCHMARK",
                 "company": "Eklipse.gg",
-                "role": "Strategic AI Intelligence",
-                "impact": "60% → 90% CLIP DETECTION ACCURACY",
-                "intel": "Strengthened AI competitiveness through systematic benchmarking and technical analysis.",
+                "impact": "60% → 90% ACCURACY",
+                "achievements": ["Signature Skill: Competitor Reverse-Engineering", "Framework: Systematic Technical Analysis", "Loot: Benchmarking Strategy Dossier"],
                 "dossier": [
-                    "Improved AI clip detection accuracy through rigorous competitor benchmarking.",
-                    "CONDUCTED REVERSE-ENGINEERING of competitor features to identify technical gaps.",
-                    "Delivered insights that directly influenced AI feature prioritization and roadmap decisions.",
-                    "Reduced iteration cycles by identifying high-impact improvements early in development.",
-                    "Maintained competitive intelligence documentation for ongoing evaluation."
+                    "Identified AI performance gaps by reverse-engineering competitor outputs.",
+                    "Led multi-day technical benchmarking to influence feature prioritization.",
+                    "Delivered insights that directly influenced AI roadmap decisions.",
+                    "Reduced iteration cycles by identifying high-impact improvements early."
                 ]
             },
             {
-                "id": "mission_lead_ai",
+                "id": "q2",
                 "title": "MISSION: LEAD AI & DATA OPTIMIZATION",
                 "company": "Eklipse.gg",
-                "role": "Team Lead & Ops Optimization",
-                "impact": "~80% TEAM EFFICIENCY BOOST",
-                "intel": "Owned AI execution to ensure research output translated into scalable, production-ready systems.",
+                "impact": "~80% EFFICIENCY BOOST",
+                "achievements": ["Perk: Bottleneck Resolution Mastery", "Loot: R&D-to-Production Pipeline", "Buff: AI Monitoring Infrastructure"],
                 "dossier": [
-                    "Increased operational success rate by improving execution workflows and monitoring.",
+                    "Increased operational success rate by improving execution workflows.",
                     "Boosted AI team efficiency by ~80% through bottleneck resolution.",
-                    "Translated R&D experiments into production pipelines with measurable product impact.",
-                    "Built AI performance monitoring frameworks to track quality, reliability, and delivery.",
-                    "Collaborated with Engineering teams to align AI output with business needs."
+                    "Translated R&D experiments into production pipelines with measurable impact.",
+                    "Built AI performance monitoring frameworks to track quality & delivery."
                 ]
             },
             {
-                "id": "mission_pm",
-                "title": "MISSION: PROJECT MANAGER & MARKET STRATEGY",
+                "id": "q3",
+                "title": "MISSION: PROJECT MANAGER & STRATEGY",
                 "company": "Eklipse.gg",
-                "role": "PM & Strategic Lead (Hype Games)",
-                "impact": "SCALED TO 400+ DAILY SUBMISSIONS",
-                "intel": "Led strategic product initiatives by translating AI capabilities into data-driven decisions.",
+                "impact": "SCALED TO 400+ DAILY SUBS",
+                "achievements": ["Item: User Sentiment Analysis Framework", "Loot: Internal KPI Tracking System", "Skill: Cross-functional Bridge"],
                 "dossier": [
-                    "Led market intelligence using web scraping and competitor research to find opportunities.",
-                    "Built user sentiment analysis framework to support product direction and marketing pivots.",
+                    "Led market intelligence using web scraping and competitor research.",
                     "Developed internal KPI tracking systems (NRU & 400+ daily submissions).",
-                    "Acted as a strategic bridge between Product, Marketing, and AI teams."
+                    "Acted as a strategic bridge between Product, Marketing, and AI teams.",
+                    "Translated raw market signals into actionable business recommendations."
                 ]
             },
             {
-                "id": "mission_maingames",
+                "id": "q4",
                 "title": "MISSION: DATA QUALITY FOUNDATION",
                 "company": "PT. MAINGAMES",
-                "role": "AI and Data Optimization Staff",
                 "impact": "SYSTEM STABILITY +20%",
-                "intel": "Fortified AI scalability through rigorous data preparation and continuous dataset audits.",
+                "achievements": ["Loot: Bounding Box Precision Mastery", "Buff: Production-Grade Data Reliability", "Skill: Dataset Audit Excellence"],
                 "dossier": [
-                    "Improved AI system stability through training dataset quality enhancement.",
+                    "Improved AI system stability by 20% through dataset quality assurance.",
                     "Performed labeling validation, bounding box correction, and dataset audits.",
-                    "Integrated user feedback from App Store reviews into continuous improvement cycles.",
-                    "Maintained production-grade data reliability for long-term scalability."
+                    "Integrated user feedback from App Store reviews into data cycles.",
+                    "Maintained high-grade data reliability for long-term AI scalability."
                 ]
             }
         ],
         "education": {
             "school": "Universitas Gadjah Mada",
             "major": "Philosophy | GPA: 3.06",
-            "focus": "Applied logic, ethics, and epistemology in decision-making and data management."
+            "desc": "Applied logic and ethics in decision-making and data management."
         }
     }
     return render_template('index.html', stats=stats)
