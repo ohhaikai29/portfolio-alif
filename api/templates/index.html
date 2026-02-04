@@ -5,9 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Alif Octrio | Persona Portfolio</title>
     <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Oswald:wght@700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         :root { --red: #D32F2F; --black: #000000; --white: #FFFFFF; --gold: #FFD700; }
-        body { background: var(--black); color: var(--white); font-family: 'Oswald', sans-serif; margin: 0; }
+        body { background: var(--black); color: var(--white); font-family: 'Oswald', sans-serif; margin: 0; overflow-x: hidden; }
         
         .bg-stripe {
             position: fixed; top: 0; left: -10%; width: 120%; height: 120%;
@@ -23,37 +24,32 @@
 
         .main-grid { display: grid; grid-template-columns: 350px 1fr; gap: 30px; padding: 0 30px 30px 30px; }
 
-        /* Char Card Sidebar */
         .char-card { background: var(--white); color: var(--black); padding: 20px; border: 6px solid var(--red); transform: rotate(1deg); }
         .lvl-badge { background: var(--black); color: white; padding: 2px 10px; font-size: 1.5rem; display: inline-block; transform: skew(-10deg); }
-        
         .stat-row { display: flex; justify-content: space-between; font-size: 1.5rem; border-bottom: 2px solid #ddd; margin: 10px 0; }
 
-        /* Quest List */
         .quest-item {
             background: #111; border-left: 10px solid var(--red);
             padding: 20px; margin-bottom: 15px; transform: skew(-2deg);
             transition: 0.3s; cursor: pointer;
         }
-        .quest-item:hover { background: #222; transform: scale(1.03); }
+        .quest-item:hover { background: #222; transform: scale(1.02); }
 
         .mission-intel { display: none; background: #000; border: 1px dashed var(--red); padding: 15px; margin-top: 15px; }
 
-        /* Contact Modal */
         .modal {
             display: none; position: fixed; z-index: 9999; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(0,0,0,0.95); justify-content: center; align-items: center;
         }
 
         .btn-showtime {
-            background: var(--red); color: white; padding: 20px;
+            background: var(--red); color: white; padding: 15px;
             font-family: 'Permanent Marker'; font-size: 2rem;
             border: 5px solid white; cursor: pointer; width: 100%; margin-top: 20px;
-            transition: 0.2s;
         }
-        .btn-showtime:hover { background: white; color: var(--red); transform: scale(1.05); }
 
         .edu-box { background: #003366; padding: 15px; margin-top: 20px; border-left: 5px solid white; transform: rotate(-1deg); }
+        .skill-tag { background: #333; color: white; padding: 2px 8px; font-size: 0.8rem; margin: 2px; display: inline-block; border: 1px solid #555; }
     </style>
 </head>
 <body>
@@ -64,7 +60,6 @@
     </div>
 
     <div class="main-grid">
-        <!-- SIDEBAR -->
         <div class="sidebar">
             <div style="width:100%; height:280px; background:#fff; border:5px solid var(--red); transform:rotate(-3deg); overflow:hidden; margin-bottom:20px;">
                 <img src="/static/alif.jpg" style="width:100%; height:100%; object-fit:cover;" onerror="this.src='https://via.placeholder.com/300x400/D32F2F/FFFFFF?text=ALIF+OCTRIO'">
@@ -79,14 +74,20 @@
                 <p style="margin:0; font-size:0.75rem; color:#666;">{{ stats.passive }}</p>
             </div>
 
+            <div style="background:#111; padding:15px; margin-top:15px; border:1px solid #444;">
+                <p style="margin:0 0 10px 0; color:var(--red); font-weight:bold;">[ INVENTORY ]</p>
+                {% for item in stats.inventory %}
+                <span class="skill-tag">{{ item }}</span>
+                {% endfor %}
+            </div>
+
             <div class="edu-box">
                 <p style="margin:0; font-size:0.7rem; color: #64B5F6;">{{ stats.education.title }}</p>
-                <p style="margin:5px 0; font-weight:bold; font-size: 0.9rem;">{{ stats.education.school }}</p>
+                <p style="margin:5px 0; font-weight:bold;">{{ stats.education.school }}</p>
                 <p style="margin:0; font-size:0.8rem;">{{ stats.education.major }}</p>
             </div>
         </div>
 
-        <!-- MAIN -->
         <div class="content">
             <h2 style="font-family:'Permanent Marker'; color:var(--red); font-size:2.5rem; margin:0;">[ MISSION LOG ]</h2>
             <p style="font-size:0.8rem; font-style:italic; margin-bottom:15px;">*Click to extract Mission Intel & Benchmarking Data</p>
@@ -95,7 +96,7 @@
             <div class="quest-item" onclick="var d=document.getElementById('{{ quest.id }}'); d.style.display=(d.style.display==='none'?'block':'none')">
                 <span style="color:var(--gold); font-size:0.8rem; font-weight:bold;">★ {{ quest.achievement }}</span>
                 <h3 style="margin: 5px 0; font-size: 1.5rem;">{{ quest.title }}</h3>
-                <p style="margin:0; font-size:0.9rem; color:#aaa;">{{ quest.role }}</p>
+                <p style="margin:0; font-size:0.9rem; color:#aaa;">{{ quest.role }} ({{ quest.company }})</p>
                 
                 <div id="{{ quest.id }}" class="mission-intel">
                     <p style="color:var(--red); font-weight:bold; font-size:0.8rem; margin:0;">MISSION INTEL:</p>
@@ -122,16 +123,14 @@
         </div>
     </div>
 
-    <!-- MODAL CONTACT -->
     <div id="contactModal" class="modal" onclick="this.style.display='none'">
-        <div style="background:var(--red); padding:50px; border:10px solid white; transform:rotate(-2deg); text-align:center; box-shadow: 20px 20px 0px black;" onclick="event.stopPropagation()">
+        <div style="background:var(--red); padding:50px; border:10px solid white; transform:rotate(-2deg); text-align:center;" onclick="event.stopPropagation()">
             <h2 style="font-family:'Permanent Marker'; font-size:3.5rem; margin:0;">TAKE YOUR HEART!</h2>
             <hr>
-            <p style="font-size:1.5rem;">Let's start a Co-op operation.</p>
             <p>📧 {{ stats.contact.email }}</p>
             <p>📱 {{ stats.contact.phone }}</p>
-            <p>🔗 <a href="https://{{ stats.contact.linkedin }}" style="color:white;">LinkedIn Profile</a></p>
-            <button onclick="document.getElementById('contactModal').style.display='none'" style="margin-top:20px; padding:10px 20px; font-family:'Permanent Marker'; cursor:pointer;">CLOSE</button>
+            <p>🔗 <a href="https://{{ stats.contact.linkedin }}" style="color:white; text-decoration:underline;">LinkedIn Profile</a></p>
+            <button onclick="document.getElementById('contactModal').style.display='none'" style="margin-top:20px; cursor:pointer;">CLOSE</button>
         </div>
     </div>
 </body>
