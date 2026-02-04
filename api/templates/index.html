@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alif Octrio | Persona Portfolio</title>
+    <title>Alif Octrio | Persona Dossier</title>
     <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Oswald:wght@700&display=swap" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         :root { --red: #D32F2F; --black: #000000; --white: #FFFFFF; --gold: #FFD700; }
         body { background: var(--black); color: var(--white); font-family: 'Oswald', sans-serif; margin: 0; overflow-x: hidden; }
@@ -26,14 +25,13 @@
 
         .char-card { background: var(--white); color: var(--black); padding: 20px; border: 6px solid var(--red); transform: rotate(1deg); }
         .lvl-badge { background: var(--black); color: white; padding: 2px 10px; font-size: 1.5rem; display: inline-block; transform: skew(-10deg); }
-        .stat-row { display: flex; justify-content: space-between; font-size: 1.5rem; border-bottom: 2px solid #ddd; margin: 10px 0; }
-
+        
         .quest-item {
             background: #111; border-left: 10px solid var(--red);
             padding: 20px; margin-bottom: 15px; transform: skew(-2deg);
             transition: 0.3s; cursor: pointer;
         }
-        .quest-item:hover { background: #222; transform: scale(1.02); }
+        .quest-item:hover { background: #1a1a1a; border-left: 15px solid var(--red); }
 
         .mission-intel { display: none; background: #000; border: 1px dashed var(--red); padding: 15px; margin-top: 15px; }
 
@@ -48,70 +46,70 @@
             border: 5px solid white; cursor: pointer; width: 100%; margin-top: 20px;
         }
 
-        .edu-box { background: #003366; padding: 15px; margin-top: 20px; border-left: 5px solid white; transform: rotate(-1deg); }
-        .skill-tag { background: #333; color: white; padding: 2px 8px; font-size: 0.8rem; margin: 2px; display: inline-block; border: 1px solid #555; }
+        .skill-tag { background: #333; color: white; padding: 2px 8px; font-size: 0.75rem; margin: 2px; display: inline-block; border: 1px solid #555; }
     </style>
 </head>
 <body>
     <div class="bg-stripe"></div>
 
     <div class="header-box">
-        <h1 style="font-family:'Permanent Marker'; margin:0;">ALIF OCTRIO</h1>
+        <h1 style="font-family:'Permanent Marker'; margin:0; text-transform: uppercase;">ALIF OCTRIO</h1>
     </div>
 
     <div class="main-grid">
         <div class="sidebar">
-            <div style="width:100%; height:280px; background:#fff; border:5px solid var(--red); transform:rotate(-3deg); overflow:hidden; margin-bottom:20px;">
-                <img src="/static/alif.jpg" style="width:100%; height:100%; object-fit:cover;" onerror="this.src='https://via.placeholder.com/300x400/D32F2F/FFFFFF?text=ALIF+OCTRIO'">
+            <div style="width:100%; height:280px; background:#fff; border:5px solid var(--red); transform:rotate(-3deg); overflow:hidden; margin-bottom:20px; box-shadow: 10px 10px 0px var(--red);">
+                <!-- PERBAIKAN FOTO -->
+                <img src="/static/alif.jpg" style="width:100%; height:100%; object-fit:cover; filter: grayscale(1);" onerror="this.src='https://via.placeholder.com/300x400/D32F2F/FFFFFF?text=ALIF+OCTRIO'">
             </div>
             
             <div class="char-card">
                 <div class="lvl-badge">LVL {{ stats.level }}</div>
                 <div style="color: var(--red); font-weight: bold; font-size: 0.8rem; margin: 5px 0;">{{ stats.rank }}</div>
-                <div class="stat-row"><span>KPI</span> <span>{{ stats.kpi }}</span></div>
-                <div class="stat-row"><span>OPT</span> <span>{{ stats.opt }}</span></div>
-                <p style="margin:10px 0 0 0; font-size:0.8rem;"><b>PASSIVE:</b></p>
-                <p style="margin:0; font-size:0.75rem; color:#666;">{{ stats.passive }}</p>
+                <div style="display:flex; justify-content:space-between; font-size:1.3rem; border-bottom:1px solid #ccc;"><span>PERFORMANCE</span> <span>{{ stats.performance }}</span></div>
+                <div style="display:flex; justify-content:space-between; font-size:1.3rem; border-bottom:1px solid #ccc;"><span>STRATEGY</span> <span>{{ stats.strategy }}</span></div>
+                <p style="margin:10px 0 0 0; font-size:0.75rem;"><b>PASSIVE:</b></p>
+                <p style="margin:0; font-size:0.7rem; color:#666;">{{ stats.passive }}</p>
             </div>
 
             <div style="background:#111; padding:15px; margin-top:15px; border:1px solid #444;">
-                <p style="margin:0 0 10px 0; color:var(--red); font-weight:bold;">[ INVENTORY ]</p>
+                <p style="margin:0 0 10px 0; color:var(--red); font-weight:bold; font-size:0.8rem;">[ INVENTORY ]</p>
                 {% for item in stats.inventory %}
                 <span class="skill-tag">{{ item }}</span>
                 {% endfor %}
             </div>
 
-            <div class="edu-box">
-                <p style="margin:0; font-size:0.7rem; color: #64B5F6;">{{ stats.education.title }}</p>
-                <p style="margin:5px 0; font-weight:bold;">{{ stats.education.school }}</p>
-                <p style="margin:0; font-size:0.8rem;">{{ stats.education.major }}</p>
+            <div style="background:#003366; color:white; padding:15px; margin-top:15px; border-left:5px solid white; transform:rotate(-1deg);">
+                <p style="margin:0; font-size:0.6rem; color: #64B5F6;">{{ stats.education.title }}</p>
+                <p style="margin:5px 0; font-weight:bold; font-size:0.85rem;">{{ stats.education.school }}</p>
+                <p style="margin:0; font-size:0.75rem;">{{ stats.education.major }}</p>
             </div>
         </div>
 
         <div class="content">
             <h2 style="font-family:'Permanent Marker'; color:var(--red); font-size:2.5rem; margin:0;">[ MISSION LOG ]</h2>
-            <p style="font-size:0.8rem; font-style:italic; margin-bottom:15px;">*Click to extract Mission Intel & Benchmarking Data</p>
+            <p style="font-size:0.8rem; font-style:italic; margin-bottom:15px; color:#aaa;">*Extract Mission Dossier & Strategic Assets</p>
 
             {% for quest in stats.quests %}
             <div class="quest-item" onclick="var d=document.getElementById('{{ quest.id }}'); d.style.display=(d.style.display==='none'?'block':'none')">
-                <span style="color:var(--gold); font-size:0.8rem; font-weight:bold;">★ {{ quest.achievement }}</span>
+                <span style="color:var(--gold); font-size:0.8rem; font-weight:bold;">★ IMPACT: {{ quest.impact }}</span>
                 <h3 style="margin: 5px 0; font-size: 1.5rem;">{{ quest.title }}</h3>
                 <p style="margin:0; font-size:0.9rem; color:#aaa;">{{ quest.role }} ({{ quest.company }})</p>
                 
                 <div id="{{ quest.id }}" class="mission-intel">
-                    <p style="color:var(--red); font-weight:bold; font-size:0.8rem; margin:0;">MISSION INTEL:</p>
-                    <p style="margin:5px 0 10px 0; font-size:0.85rem;">{{ quest.how }}</p>
+                    <p style="color:var(--red); font-weight:bold; font-size:0.8rem; margin:0;">STRATEGIC SUMMARY:</p>
+                    <p style="margin:5px 0 10px 0; font-size:0.85rem;">{{ quest.summary }}</p>
                     
-                    <p style="color:var(--gold); font-weight:bold; font-size:0.8rem; margin:0;">ITEM DROPS (LOOT):</p>
+                    <p style="color:var(--gold); font-weight:bold; font-size:0.8rem; margin:0;">ASSET ACQUISITION (LOOT):</p>
                     <ul style="margin:5px 0 10px 0; padding-left:15px; font-size:0.8rem; color:var(--gold);">
-                        {% for loot in quest.loot %}
+                        {% for loot in quest.assets %}
                         <li>{{ loot }}</li>
                         {% endfor %}
                     </ul>
 
-                    <p style="color:white; font-weight:bold; font-size:0.8rem; margin:0;">ACTION DATA:</p>
+                    <p style="color:white; font-weight:bold; font-size:0.8rem; margin:0;">DOSSIER DATA:</p>
                     <ul style="margin:5px 0 0 0; padding-left:15px; font-size:0.8rem; color:#ccc;">
-                        {% for detail in quest.details %}
+                        {% for detail in quest.dossier %}
                         <li>{{ detail }}</li>
                         {% endfor %}
                     </ul>
@@ -126,11 +124,11 @@
     <div id="contactModal" class="modal" onclick="this.style.display='none'">
         <div style="background:var(--red); padding:50px; border:10px solid white; transform:rotate(-2deg); text-align:center;" onclick="event.stopPropagation()">
             <h2 style="font-family:'Permanent Marker'; font-size:3.5rem; margin:0;">TAKE YOUR HEART!</h2>
+            <p style="font-size:1.2rem;">Ready for a new strategic operation?</p>
             <hr>
             <p>📧 {{ stats.contact.email }}</p>
-            <p>📱 {{ stats.contact.phone }}</p>
             <p>🔗 <a href="https://{{ stats.contact.linkedin }}" style="color:white; text-decoration:underline;">LinkedIn Profile</a></p>
-            <button onclick="document.getElementById('contactModal').style.display='none'" style="margin-top:20px; cursor:pointer;">CLOSE</button>
+            <button onclick="document.getElementById('contactModal').style.display='none'" style="margin-top:20px; font-family:'Permanent Marker'; padding:10px 20px; cursor:pointer;">CLOSE</button>
         </div>
     </div>
 </body>
