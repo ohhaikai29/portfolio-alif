@@ -6,41 +6,69 @@ app = Flask(__name__)
 def home():
     stats = {
         "level": "03",
-        "rank": "AI STRATEGIST",
-        "exp_years": "3.5 Years Experience",
-        "kpi": "90%", # Ganti HP jadi KPI (Key Performance Index)
-        "opt": "85%", # Ganti SP jadi OPT (Optimization Level)
+        "rank": "SENIOR AI OPERATIONS LEAD",
+        "exp_years": "Aug 2022 - Present",
+        "kpi": "90%", 
+        "opt": "85%",
         "persona_name": "LOGOS",
-        "philosophy_perk": "Decision-making based on Logic & Ethics",
-        "social_stats": [5, 4, 4, 4, 3],
+        "philosophy_perk": "Logic, Ethics, & Epistemology in Decision Making",
+        "social_stats": [5, 5, 4, 4, 5], # PM, AI Ops, Analysis, Stakeholder, Strategy
         "contact": {
             "email": "alifoctrio@gmail.com",
             "phone": "+62 813-3670-0117",
             "linkedin": "linkedin.com/in/alifoctrio"
         },
+        "inventory": [
+            "Jira", "Asana", "Trello", "Advanced Excel", "Web Scraping", "Prompt Engineering"
+        ],
         "quests": [
             {
-                "id": "eklipse",
-                "title": "OP: EKLIPSE MASTERY",
-                "achievement": "AI Accuracy 60% → 90%",
-                "how": "Reverse-engineered competitor outputs and implemented multi-day technical benchmarking.",
-                "loot": ["High-Precision AI Framework", "400+ Daily Submission Pipeline", "NRU Tracking Mastery"],
-                "details": ["Data-driven product strategy", "Market intelligence via web scraping", "Cross-functional bridge: Product, AI, & Marketing"]
+                "id": "eklipse_pm",
+                "title": "OP: HYPE GAMES STRATEGY",
+                "role": "Project Manager & Market Strategy",
+                "achievement": "Market Intelligence & Product-Market Fit",
+                "how": "Translating AI capabilities, market signals, and user insights into actionable product decisions.",
+                "loot": ["User Sentiment Framework", "KPI Tracking System (NRU & 400+ Submissions)", "Market Intelligence Data"],
+                "details": [
+                    "Conducted market intelligence through web scraping and community insights.",
+                    "Designed and implemented user sentiment analysis frameworks for marketing pivots.",
+                    "Developed internal KPI tracking systems for 400+ daily submissions.",
+                    "Acted as a strategic bridge between Product, Marketing, and AI teams."
+                ]
+            },
+            {
+                "id": "eklipse_ai",
+                "title": "OP: AI OPTIMIZATION LEAD",
+                "role": "Lead AI and Data Optimization",
+                "achievement": "AI Success Rate: 60% → 90%",
+                "how": "Reverse-engineering competitor outputs and multi-day technical benchmarking to influence feature prioritization.",
+                "loot": ["AI Performance Monitoring Framework", "Systematic Benchmark Analysis", "Optimized Iteration Cycles"],
+                "details": [
+                    "Led end-to-end AI operations and multi-day technical benchmarking.",
+                    "Identified gaps by reverse-engineering competitor outputs.",
+                    "Built monitoring frameworks to align AI results with business stakeholders.",
+                    "Reduced AI iteration cycles through systematic benchmark analysis."
+                ]
             },
             {
                 "id": "maingames",
-                "title": "OP: DATA STABILIZATION",
-                "achievement": "System Stability +20%",
-                "how": "Enhanced training dataset quality and large-scale QA to reduce training noise.",
-                "loot": ["Production-Grade Data Reliability", "Bounding Box Precision Skill", "Feedback Integration Blueprint"],
-                "details": ["Labeling validation", "Bounding box correction", "Facebook Gaming creator content monitoring"]
+                "title": "OP: DATA SCALABILITY",
+                "role": "AI and Data Optimization Staff",
+                "achievement": "System Stability Boost: +20%",
+                "how": "Training dataset quality enhancement and large-scale data QA.",
+                "loot": ["Clean Training Datasets", "Bounding Box Precision", "User Feedback Loop"],
+                "details": [
+                    "Supported AI performance through high-quality data preparation.",
+                    "Performed labeling validation, bounding box correction, and dataset audits.",
+                    "Integrated App Store reviews and social media feedback into data cycles.",
+                    "Maintained production-grade data reliability for long-term scalability."
+                ]
             }
         ],
         "education": {
-            "title": "SIDE QUEST: ACADEMIC FOUNDATION",
             "school": "Universitas Gadjah Mada",
             "major": "Philosophy | GPA: 3.06",
-            "reward_skill": "Philosopher's Stone: Unlocked Advanced Ethics & Epistemology in Decision Making"
+            "focus": "Ethics, Logic, & Philosophy of Science in Data Management."
         }
     }
     return render_template('index.html', stats=stats)
